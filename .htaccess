@@ -1,0 +1,4 @@
+<IfModule mod_rewrite.c>
+Redirect /presse /assets/files/presse_kit_bonsplants.zip
+Redirect /kit-presse /assets/files/presse_kit_bonsplants.zip
+</IfModule>

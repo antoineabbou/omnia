@@ -1,0 +1,50 @@
+image: node:latest
+
+cache:
+  paths:
+    - node_modules/
+
+before_script:
+ - apt-get update -qq && apt-get install -y -qq sshpass
+
+deploy_preprod:
+  stage: deploy
+  environment: Staging
+  only:
+    - preprod
+  script:
+    - rm ./package-lock.json
+    - npm install
+    - npm run generate
+    - cd dist/
+    - ls
+    - sshpass -V
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r . upian4@upian4.typhon.net:/home/upian4/public_html/bonsplants.com/preprod/
+
+deploy_prod:
+  stage: deploy
+  environment: Prod
+  only:
+    - prod
+  script:
+    - rm ./package-lock.json
+    - npm install
+    - npm run generate
+    - cd dist/
+    - ls
+    - sshpass -V
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r . upian4@upian4.typhon.net:/home/upian4/public_html/bonsplants.com/www/
+
+deploy_maichimp:
+  stage: deploy
+  environment: Staging
+  only:
+    - preprod
+  script:
+    - cd mailchimp/
+    - ls -sl
+    - sshpass -V
+    - export SSHPASS=$USER_PASS
+    - sshpass -e scp -o stricthostkeychecking=no -r . upian4@upian4.typhon.net:/home/upian4/public_html/bonsplants.com/mailchimp/
