@@ -1,4 +1,4 @@
-# bonsplants
+# OMNIA - Landing page
 
 > Nuxt.js project
 
