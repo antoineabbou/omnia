@@ -1,13 +1,15 @@
 <template>
   <section class="layout layout--presentation">
     <img class="cross" src="../static/assets/images/logos/cross.svg" alt="cross"/>
+    <app-novlangue-toggle/>
     <app-header/>
 
     <div class="content">
       	<div class="content__inner" ref="vsSection">
 			    <div class="grid"> 
             <div class="part part--left">
-              <img :src=src alt="image"/>
+              <img class="image" ref="image" :src=src alt="image"/>
+              <img class="circle" ref="circle" v-show="step === 2" src="../static/assets/images/circle.png" alt="circle"/>
             </div>
 
             <div class="part part--right">
@@ -16,8 +18,6 @@
                 <h1 class="title" v-html="title"> </h1>
                 <p class="sentence" v-html="sentence"> </p>
               </app-paragraph>
-
-              <app-novlangue-toggle/>
               
               <app-button-nav/>
             </div>
@@ -40,6 +40,7 @@ if (process.browser) {
   var mousePosition = require('touch-position')()
   // require('smooth-scrolling/smooth-scrolling')
   var MobileDetect = require('mobile-detect')
+  var loop = require('raf-loop')
 }
 
 import Emitter from '~/assets/js/utils/events'
@@ -70,6 +71,7 @@ export default {
     },
   data () {
     return {
+      step: 0,
       subtitle: 'Qu\'est-ce ?', 
       title: 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
       sentence: 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link"> lecture interactive </span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link"> outil augmenté </span> de la lecture. ',
@@ -77,8 +79,17 @@ export default {
     }
   },
   created () {
+    this.easing = {
+      cta: {
+        x: 0,
+        y: 0
+      }
+    } 
   },
   mounted () {
+    this.engine = loop(this.loop)
+    this.engine.start()
+    
     this.step = 0
 
     this.bindAll()
@@ -109,6 +120,31 @@ export default {
   },
 
   methods: {
+
+    loop (dt) {
+      let mouseX = (((mousePosition[0] / window.innerWidth)) - 0.5) * 2
+      let mouseY = (((mousePosition[1] / window.innerHeight)) - 0.5) * 2
+
+      let ctaX = mouseX * 20
+      let ctaY = mouseY * 20
+      
+      console.log(ctaX)
+
+      this.easing.cta.x += (ctaX - this.easing.cta.x) * 0.2
+      this.easing.cta.y += (ctaY - this.easing.cta.y) * 0.2
+
+
+      TweenLite.set(this.$refs.image, {
+        x : this.easing.cta.x * 0.5,
+        y : this.easing.cta.y * 0.5
+      })
+
+      TweenLite.set(this.$refs.circle, {
+        x : this.easing.cta.x * 0.8,
+        y : this.easing.cta.y * 0.8
+      })
+
+    },
 
     goToNextStep () {
       this.goToNextStepTimeline = new TimelineLite({
@@ -225,7 +261,7 @@ export default {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
             this.sentence = 'Une façon ludique de lire un livre dit classique. Tous les adolescents d\'aujourd\'hui sont à l\'aise avec les usages des smartphones, c\'est pourquoi le choix de deux objets simples était primordial. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span class="link" d\'outil d\'exploration </span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était.'
-            this.src = '/assets/images/phone.jpg'
+            this.src = '/assets/images/phone.gif'
           } 
 
           break;
@@ -298,7 +334,8 @@ export default {
 
     bindAll () {
       [
-        'onResize'
+        'onResize',
+        'loop'
       ].forEach((fn) => (this[fn] = this[fn].bind(this)))
     },
 
@@ -384,19 +421,30 @@ export default {
 						width 100%
 						// height 100%
 
-				.part--left
-					margin-right 10px
-          display flex
-          align-items center
-					
-				.part--right 
-					margin-left 10px
+.part--left
+  margin-right 10px!important
+  display flex!important
+  align-items center!important
+  position relative
 
-          .link
-            color color_blue 
-            text-decoration underline
-            font-family "circularblack"
-            cursor pointer
+  .image
+    z-index 1
+
+  .circle
+    position absolute
+    top 0; right 0; left 0; bottom 0
+    margin auto;
+    z-index 0
+    width 70%!important
+
+.part--right 
+  margin-left 10px!important
+
+.link
+  color color_blue!important
+  text-decoration underline!important
+  font-family "circularblack"!important
+  cursor pointer!important
 
 .cross 
   position absolute

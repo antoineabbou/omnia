@@ -3,7 +3,7 @@
         <p class="sentence"> Français </p>
         <div class="toggle-button">
             <div class="checkbox">
-                <input type="checkbox"/>
+                <input ref="toggleNovlangue" type="checkbox"/>
                 <label></label>
             </div>
         </div>
@@ -13,7 +13,6 @@
 
 <script>
 import Emitter from '~/assets/js/utils/events'
-
 
 export default {
 	components: {
@@ -31,10 +30,22 @@ export default {
   },
 
   mounted () {
+    this.addListeners()
+    console.log(this.$refs.toggleNovlangue)
   },
 
   methods: {
-    
+    addListeners() {
+        this.$refs.toggleNovlangue.addEventListener('click', this.toggleAction)
+    }, 
+
+    toggleAction() {
+        if(this.$refs.toggleNovlangue.checked) {
+            Emitter.emit('GLOBAL:CHECKED')
+        } else {
+            Emitter.emit('GLOBAL:UNCHECKED')
+        }
+    }
   },
 
   beforeDestroy () {
@@ -47,9 +58,18 @@ export default {
 
 
 .novlangue-toggle
+    display flex
+    position absolute
+    top 30px 
+    right 75px
+    .sentence
+        font-family "circularbook"
+        font-size 14px
+        color color_black
     .checkbox
         position relative
         display inline-block
+        margin 0px 10px
         label
             width 25px
             height 16px
