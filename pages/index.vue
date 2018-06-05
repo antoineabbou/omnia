@@ -1,10 +1,16 @@
 <template>
   <section class="layout layout--home">
-      <app-header/>
+    <app-header/>
 
     <div class="content">
       <div class="content__inner" ref="vsSection">
+        <div class="text"> 
+          <h1 class="title"> Bienvenue sur Omnia </h1>
+          <img class="logo" src="../static/assets/svg/logo_omnia--white.svg" alt="logo"/>
+          <p class="sentence"> Êtes-vous prêt à rentrer dans un nouveau monde ? </p>
+        </div>
       </div>
+      <a class="link"> Maintenir pour continuer </a>
     </div>
 
 
@@ -102,5 +108,49 @@ export default {
 </script>
 
 <style lang="stylus">
+.layout
+  &&--home
+    width 100vw 
+    height 100vh
+  
+    .content 
+      position relative
+      width 100vw 
+      height 100vh
+
+      .content__inner
+        position relative
+        display flex
+        align-items center 
+        justify-content center 
+        background color_blue
+        border 80px solid color_white
+        text-align center
+        width 100vw 
+        height 100vh
+
+        .text
+          .title
+            font-size 36px 
+            font-family "circularblack"
+            color color_white 
+
+          .logo
+            width 250px 
+            height auto 
+            margin 60px 0px
+
+          .sentence
+            font-size 24px 
+            font-family "circularbook"
+            color white
+            max-width 290px
+            margin auto
+        
+      .link
+        position absolute
+        bottom 30px
+        left 0; right 0;
+        text-align center
 
 </style>

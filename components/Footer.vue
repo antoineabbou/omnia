@@ -1,12 +1,18 @@
 <template>
   <div class="footer">
+    <!-- <app-progress-bar/> -->
+    <a class="link"> à propos </a>
   </div>
 </template>
 
 <script>
 import Emitter from '~/assets/js/utils/events'
+// import AppProgressBar from '~/components/ProgressBar.vue'
 
 export default {
+  components: {
+    // AppProgressBar
+  }, 
   data () {
     return {
 
@@ -31,4 +37,9 @@ export default {
 }
 </script>
 <style lang="stylus" scoped>
+
+  .footer
+    position absolute 
+    bottom 30px
+    right 80px
 </style>
