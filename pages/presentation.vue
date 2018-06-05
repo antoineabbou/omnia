@@ -16,6 +16,8 @@
                 <h1 class="title" v-html="title"> </h1>
                 <p class="sentence" v-html="sentence"> </p>
               </app-paragraph>
+
+              <app-novlangue-toggle/>
               
               <app-button-nav/>
             </div>
@@ -40,6 +42,8 @@ if (process.browser) {
   var MobileDetect = require('mobile-detect')
 }
 
+import Emitter from '~/assets/js/utils/events'
+
 // Components
 import AppParagraph from '~/components/Paragraph.vue'
 import AppFooter from '~/components/Footer.vue'
@@ -47,6 +51,7 @@ import AppHeader from '~/components/Header.vue'
 import AppButtonNav from '~/components/ButtonNav.vue'
 import AppProgressBar from '~/components/ProgressBar.vue'
 import AppAbout from '~/components/About.vue'
+import AppNovlangueToggle from '~/components/NovlangueToggle.vue'
 
 // Libs
 import {TweenMax, Power2, TimelineLite} from 'gsap'
@@ -60,7 +65,8 @@ export default {
     AppParagraph, 
     AppButtonNav,
     AppProgressBar,
-    AppAbout
+    AppAbout,
+    AppNovlangueToggle
     },
   data () {
     return {
@@ -189,6 +195,8 @@ export default {
     },
 
     getContent(step) {
+
+      Emitter.emit('GLOBAL:STEP', this.step)
       switch (step) {
         case 0:
 

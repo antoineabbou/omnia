@@ -7,6 +7,11 @@
 </template>
 
 <script>
+
+import {TweenMax, Power2, TimelineLite} from 'gsap'
+import Emitter from '~/assets/js/utils/events'
+
+
 export default {
   data () {
     return {
@@ -24,7 +29,23 @@ export default {
   },
 
   mounted () {
+    TweenMax.to('.progress-current', 1, {
+        width: '25%',
+        ease: Expo.easeOut
+    })
+    this.addListeners()
+  },
 
+  methods: {
+    addListeners() {
+        Emitter.on('GLOBAL:STEP', (step) => {
+            this.step = step
+            TweenMax.to('.progress-current', 1, {
+                width: 25 + (this.step * 25) + '%',
+                ease: Expo.easeOut
+            })
+        })
+    }
   },
 
   beforeDestroy () {
