@@ -1,35 +1,34 @@
 <template>
-    <no-ssr>
-        <div class="grid"> 
-            <div class="part part--left">
-                <h3 class="subtitle"> Qui ? </h3>
-                <h1 class="title"> À propos </h1>
-                <p class="sentence"> Nous sommes 5 étudiants en bachelor design et développement interactif à l’école des Gobelins. Nous avons imaginé et réalisé Omnia dans le cadre d’un projet de fin d’année ayant pour thématique : <br> 
-                <span class="sentence--bold">« Le livre du futur pour la jeunesse » </span> 
-                <br> <br> 
-                Omnia est pour nous un moyen de sensibiliser les jeunes à la lecture mais avant tout à l’utilisation de leurs données personnelles à travers le récit de George Orwell — 1984. </p>
+    <div class="grid about"> 
+        <div class="part part--left">
+            <h3 class="stagger subtitle"> Qui ? </h3>
+            <h1 class="stagger title"> À propos </h1>
+            <p class="stagger sentence"> Nous sommes 5 étudiants en bachelor design et développement interactif à l’école des Gobelins. Nous avons imaginé et réalisé Omnia dans le cadre d’un projet de fin d’année ayant pour thématique : <br> 
+            <span class="stagger sentence--bold">« Le livre du futur pour la jeunesse » </span> 
+            <br> <br> 
+            Omnia est pour nous un moyen de sensibiliser les jeunes à la lecture mais avant tout à l’utilisation de leurs données personnelles à travers le récit de George Orwell — 1984. </p>
 
-                <ul class="list list--names">
-                    <li :key="index" v-for="(member, index) in members">
-                        {{ member.name }} <span class="role"> - {{ member.function }} </span> 
-                    </li>
-                </ul>
+            <ul class="stagger list list--names">
+                <li :key="index" v-for="(member, index) in members">
+                    {{ member.name }} <span class="role"> - {{ member.function }} </span> 
+                </li>
+            </ul>
 
-                <p class="sentence sentence--bottom"> Si notre projet vous intéresse, n’hésitez pas à nous contacter pour en discuter ! </p>
-            </div>
+            <p class="stagger sentence sentence--bottom"> Si notre projet vous intéresse, n’hésitez pas à nous contacter pour en discuter ! </p>
+        </div>
 
-            <div class="part part--right">
-                <div class="test stagger">
-                    <div class="logos"> 
-                        <img class="logo logo--gobelins" src="../static/assets/images/logos/gobelins.svg" alt="Gobelins"/> 
-                        <p class="sentence"> une école de la </p>
-                        <img class="logo logo--cci" src="../static/assets/images/logos/cci.png" alt="CCI"/>
-                    </div>
-                    <p class="sentence"> Nous remercions l’ensemble de l’équipe pédagogique de l’école des Gobelins pour leurs conseils et accompagnements qui a permis au projet Omnia de voir le jour ! </p>
+        <div class="part part--right">
+            <div class="test stagger">
+                <div class="logos"> 
+                    <img class="logo logo--gobelins" src="../static/assets/images/logos/gobelins.svg" alt="Gobelins"/> 
+                    <p class="sentence"> une école de la </p>
+                    <img class="logo logo--cci" src="../static/assets/images/logos/cci.png" alt="CCI"/>
                 </div>
+                <p class="sentence"> Nous remercions l’ensemble de l’équipe pédagogique de l’école des Gobelins pour leurs conseils et accompagnements qui a permis au projet Omnia de voir le jour ! </p>
             </div>
         </div>
-    </no-ssr>
+    </div>
+     
 </template>
 
 <script>
@@ -139,30 +138,16 @@ export default {
 }
 </script>
 
-<style lang="stylus">
+<style lang="stylus" scoped>
 .layout
-  &&--about
-    width 100vw 
-    height 100vh
-
-    .content
-        position relative
-        width 100vw
-        height 100vh
-    
     .content__inner
-        position relative
-        width 100vw
-        height 100vh
-        overflow hidden 
-        background color_blue
-        padding 190px
-
-        .grid
+        .about
+            background color_blue
             display flex
             align-items center 
             justify-content center
             height 100%
+            padding 100px
 
             .part
                 width 50%
@@ -232,11 +217,14 @@ export default {
                     align-items center
 
                     .logo
+                        &--gobelins
+                            max-width 100px
                         &--cci 
                             max-width 160px
 
                     .sentence
                         margin 0px 25px
+
 
                     
 

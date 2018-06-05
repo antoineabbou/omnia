@@ -40,6 +40,6 @@ export default {
 
   .footer
     position absolute 
-    bottom 30px
+    bottom -45px
     right 80px
 </style>

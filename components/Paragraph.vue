@@ -38,7 +38,7 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .paragraph
-	padding 100px 40px 70px 70px
+	padding 100px 70px 70px 70px
 
 	.subtitle
 		font-family "circularbook"
@@ -58,11 +58,5 @@ export default {
 		color color_grey
 		font-size 16px
 		line-height 40px
-
-		.link
-			color color_blue 
-			text-decoration underline
-			font-family "circularblack"
-			cursor pointer
 
 </style>

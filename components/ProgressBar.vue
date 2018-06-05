@@ -36,7 +36,7 @@ export default {
 <style lang="stylus" scoped>
 .progress-bar
     position absolute
-    bottom 30px
+    bottom -45px
     width 130px 
     left 0
     right 0
@@ -55,7 +55,7 @@ export default {
             left 0
             position absolute
             top 0
-            width 25%
+            width 0%
     
 
 

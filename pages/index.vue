@@ -22,6 +22,7 @@ if (process.browser) {
   var mousePosition = require('touch-position')()
   require('smooth-scrolling/smooth-scrolling')
   var MobileDetect = require('mobile-detect')
+  var PIXI = require('pixi.js')
 }
 
 // Components
@@ -30,7 +31,6 @@ import AppHeader from '~/components/Header.vue'
 
 // Libs
 import {TweenMax, Power2, TimelineLite} from 'gsap'
-
 const bpLarge = 999
 
 export default {
@@ -45,12 +45,72 @@ export default {
   created () {
   },
   mounted () {
+    this.value = 0
+    this.node = this.$el.querySelector('.link')
+    this.longpress = false;
+    this.presstimer = null;
+    this.longtarget = null;
+
+
     this.bindAll()
     this.addListeners()
     this.$nextTick(this.onResize)
+    console.log(PIXI)
+    // this.renderer = PIXI.autoDetectRenderer(800, 600);
+    // document.body.appendChild(this.renderer.view);
+    // this.renderer.view.style.position = 'absolute'
+    // this.renderer.view.style.top = 0
+
+    // this.stage = new PIXI.Container();
+
+    // var bg = PIXI.Sprite.fromImage('/assets/images/city.jpg');
+    // bg.width = this.renderer.width;
+    // bg.height = this.renderer.height;
+    // this.stage.addChild(bg);
+
+    // var littleDudes = PIXI.Sprite.fromImage('/assets/images/city.jpg');
+    // littleDudes.position.x = (this.renderer.width / 2) - 315;
+    // littleDudes.position.y = 200;
+    // this.stage.addChild(littleDudes);
+
+    // var littleRobot = PIXI.Sprite.fromImage('/assets/images/city.jpg');
+    // littleRobot.position.x = (this.renderer.width / 2) - 200;
+    // littleRobot.position.y = 100;
+    // this.stage.addChild(littleRobot);
+
+    // this.blurFilter1 = new PIXI.filters.BlurFilter();
+    // this.blurFilter2 = new PIXI.filters.BlurFilter();
+
+    // littleDudes.filters = [this.blurFilter1];
+    // littleRobot.filters = [this.blurFilter2];
+
+    // this.count = 0;
+
+    // requestAnimationFrame(this.animate);
+
+
+    
   },
 
   methods: {
+    onKeyDown ( event ) {
+      console.log("keydown");
+    },
+
+    onClick ( event ) {
+      this.animate()
+      console.log("click");
+      this.pressing = true;
+    },
+
+    onRelease ( event ) {
+      console.log("release");
+      this.pressing = false;
+    },
+
+
+
+
     bindAll () {
       [
         'onResize'
@@ -59,6 +119,11 @@ export default {
 
     addListeners () {
       window.addEventListener('resize', this.onResize)
+
+      this.node.addEventListener( 'mousedown', this.onClick, false );
+      this.node.addEventListener( 'touchstart', this.onClick, false );
+      this.node.addEventListener( 'mouseup', this.onRelease, false );
+      this.node.addEventListener( 'touchend', this.onRelease, false );
     },
 
     removeListeners () {
@@ -96,7 +161,38 @@ export default {
       } else {
         this.removeScroll()
       }
+    },
+
+    animate() {
+
+      // this.count += 0.005;
+
+      // var blurAmount = Math.cos(this.count) ;
+      // var blurAmount2 = Math.sin(this.count) ;
+
+
+      // this.blurFilter1.blur = 20 * (blurAmount);
+      // this.blurFilter2.blur = 20 * (blurAmount2);
+      // this.renderer.render(this.stage);
+      requestAnimationFrame( this.animate );
+
+      this.render();
+    },
+
+    render() {
+      if(this.pressing) {
+        if (this.value < 2) {
+          this.value += 0.01
+          console.log(this.value)
+        }
+      } else {
+        if (this.value > 0) {
+          this.value -= 0.01
+          console.log(this.value)
+        }
+      }
     }
+
 
   },
 
