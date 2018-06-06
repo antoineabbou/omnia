@@ -10,7 +10,7 @@
 
             <ul class="stagger list list--names">
                 <li :key="index" v-for="(member, index) in members">
-                    {{ member.name }} <span class="role"> - {{ member.function }} </span> 
+                    <a class="link" target="_blank" :href="member.portfolio"> {{ member.name }} </a> <span class="role"> - {{ member.function }} </span> 
                 </li>
             </ul>
 
@@ -249,6 +249,13 @@ export default {
 
                         +For-wide()
                             margin-top 30px
+
+                        +For-wide()
+                            margin-top 20px
+                        
+                        .link
+                            color color_white
+                            text-decoration none
 
                         .role
                             font-size 12px

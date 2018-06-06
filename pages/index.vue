@@ -1,6 +1,7 @@
 <template>
   <section class="layout layout--home">
     <app-header/>
+    <app-loader v-show="!loaded"/>
 
     <div class="content">
       <div class="content__inner" ref="vsSection">
@@ -29,6 +30,7 @@ if (process.browser) {
 // Components
 import AppFooter from '~/components/Footer.vue'
 import AppHeader from '~/components/Header.vue'
+import AppLoader from '~/components/Loader.vue'
 
 // Libs
 import {TweenMax, Power2, TimelineLite} from 'gsap'
@@ -37,61 +39,39 @@ const bpLarge = 999
 export default {
   components: {
     AppFooter,
-    AppHeader
+    AppHeader,
+    AppLoader
   },
   data () {
     return {
+      loaded: false
     }
   },
   created () {
   },
   mounted () {
-    this.width = 0
-    this.node = this.$el.querySelector('.link')
-    this.longpress = false;
-    this.presstimer = null;
-    this.longtarget = null;
+    setTimeout(() => {
+      TweenMax.to('.loader__img', 0.2, {
+        opacity: 0,
+        onComplete: () => {
+          this.loaded = true
+          if(this.loaded) {
+            this.width = 0
+            this.node = this.$el.querySelector('.link')
+            this.longpress = false;
+            this.presstimer = null;
+            this.longtarget = null;
 
 
-    this.bindAll()
-    this.addListeners()
-    this.$nextTick(this.onResize)
-    console.log(PIXI)
+            this.bindAll()
+            this.addListeners()
+            this.$nextTick(this.onResize)
 
-    this.initAnimation()
-    // this.renderer = PIXI.autoDetectRenderer(800, 600);
-    // document.body.appendChild(this.renderer.view);
-    // this.renderer.view.style.position = 'absolute'
-    // this.renderer.view.style.top = 0
-
-    // this.stage = new PIXI.Container();
-
-    // var bg = PIXI.Sprite.fromImage('/assets/images/city.jpg');
-    // bg.width = this.renderer.width;
-    // bg.height = this.renderer.height;
-    // this.stage.addChild(bg);
-
-    // var littleDudes = PIXI.Sprite.fromImage('/assets/images/city.jpg');
-    // littleDudes.position.x = (this.renderer.width / 2) - 315;
-    // littleDudes.position.y = 200;
-    // this.stage.addChild(littleDudes);
-
-    // var littleRobot = PIXI.Sprite.fromImage('/assets/images/city.jpg');
-    // littleRobot.position.x = (this.renderer.width / 2) - 200;
-    // littleRobot.position.y = 100;
-    // this.stage.addChild(littleRobot);
-
-    // this.blurFilter1 = new PIXI.filters.BlurFilter();
-    // this.blurFilter2 = new PIXI.filters.BlurFilter();
-
-    // littleDudes.filters = [this.blurFilter1];
-    // littleRobot.filters = [this.blurFilter2];
-
-    // this.count = 0;
-
-    // requestAnimationFrame(this.animate);
-
-
+            this.initAnimation()
+          }
+        }
+      })
+    }, 500);
     
   },
 
@@ -125,6 +105,7 @@ export default {
 
     lastAnimation () {
       this.lastTimeline = new TimelineLite( { 
+        delay: 0.1,
         onComplete: () => {
           setTimeout(() => {
             this.$router.push({ path: 'presentation' })  
@@ -132,7 +113,7 @@ export default {
         }
       })
       this.lastTimeline.add('start')
-      this.lastTimeline.to('.text', 0.75, {
+      this.lastTimeline.to('.text', 1.3, {
         scale: 1.2, 
         opacity: 0,
         ease: Expo.easeOut
@@ -141,7 +122,7 @@ export default {
         opacity: 0, 
         ease: Expo.easeOut
       }, 'start')
-      .to('.link', 0.75, {
+      .to('.link', 1.3, {
         opacity: 0, 
         ease: Expo.easeOut
       }, 'start')
@@ -263,6 +244,7 @@ export default {
 <style lang="stylus">
 .layout
   &&--home
+    cursor pointer!important
     width 100vw 
     height 100vh
   
