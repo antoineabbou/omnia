@@ -1,5 +1,9 @@
 <template>
   <section class="layout layout--presentation">
+    <div class="overlay"> 
+      <img src="../static/assets/images/phone.gif" alt="phone"/>
+    </div>
+
     <img class="cross" src="../static/assets/images/logos/cross.svg" alt="cross"/>
 
     <div class="content">
@@ -15,7 +19,7 @@
 
             <div class="part part--right">
               <app-paragraph> 
-                <h3 class="subtitle" v-html="subtitle"> </h3>
+                <h3 class="subtitle" v-html="subtitle">  </h3>
                 <h1 class="title" v-html="title"> </h1>
                 <p class="sentence" v-html="sentence"> </p>
               </app-paragraph>
@@ -74,6 +78,7 @@ export default {
     },
   data () {
     return {
+      currentLanguage: 'french',
       step: 0,
       subtitle: 'Qu\'est-ce ?', 
       title: 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
@@ -90,6 +95,7 @@ export default {
     } 
   },
   mounted () {
+    this.links = this.$el.querySelectorAll('.link')
     document.body.style.margin = "0px"
     this.engine = loop(this.loop)
     this.engine.start()
@@ -113,14 +119,6 @@ export default {
 
     this.btnNext.addEventListener('click', this.goToNextStep)
     this.btnPrevious.addEventListener('click', this.goToPreviousStep)
-
-    this.links = this.$el.querySelectorAll('.sentence .link')
-    this.links.forEach(link => {
-      link.style.color = "#2C62FF"
-			link.style.textDecoration = "underline"
-			link.style.fontFamily = "circularblack"
-			link.style.cursor = "pointer"
-    });
   },
 
   methods: {
@@ -149,6 +147,7 @@ export default {
     },
 
     goToNextStep () {
+
       this.goToNextStepTimeline = new TimelineLite({
         onComplete: () => {
           clearProps: 'all'
@@ -162,6 +161,7 @@ export default {
         })
       }
 
+      console.log(this.step)
       this.goToNextStepTimeline.add('start')
       .to('.image', 0.75, {
         yPercent: 100,
@@ -172,6 +172,13 @@ export default {
         yPercent: -100,
         ease: Power4.easeOut
       }, 'start')
+
+      if(this.step === 2) {
+        this.goToNextStepTimeline.from(this.$el.querySelector('.translator'), 0.75, {
+          yPercent: 100,
+          ease: Power4.easeOut
+        }, 'start+=1')
+      }
 
 
       setTimeout(() => {
@@ -251,7 +258,6 @@ export default {
     },
 
     getContent(step) {
-
       Emitter.emit('GLOBAL:STEP', this.step)
       switch (step) {
         case 0:
@@ -263,6 +269,15 @@ export default {
             this.sentence = 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link"> lecture interactive </span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link"> outil augmenté </span> de la lecture. ',
             this.src ='/assets/images/city.jpg'
           } 
+
+          if (this.novlangue) {
+            this.subtitle = 'LOREM'
+            this.title = 'IPSUM DOLOR SIT',
+            this.sentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            this.src ='/assets/images/city.jpg'
+          } 
+
+
           break;
 
 
@@ -272,6 +287,13 @@ export default {
             this.title = 'Omnia, <br/> le livre qui vous lie.'
             this.sentence = '<span class="link">1984 de George Orwell </span> nous paraissait un choix judicieux par rapport à notre objectif : sensibiliser les adolescents à l\'usage de leurs données, mais surtout leur redonner le goût de la lecture. À l\'ère où les questions se posent sur l\'usage de nos données personnelles, à l\'ère où <span class="link"> des lois sont votées </span> pour nous protéger, à l\'ère où l\'utilisateur veut avoir le choix, nous ne pouvions pas trouver meilleur récit qui corresponde à ce thème si important à notre époque.'
             this.src = '/assets/images/book.jpg'
+          }
+          
+          if (this.novlangue) {
+            this.subtitle = 'LOREM'
+            this.title = 'IPSUM DOLOR SIT',
+            this.sentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            this.src ='/assets/images/book.jpg'
           } 
           break;
 
@@ -280,8 +302,15 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
-            this.sentence = 'Une façon ludique de lire un livre dit classique. Tous les adolescents d\'aujourd\'hui sont à l\'aise avec les usages des smartphones, c\'est pourquoi le choix de deux objets simples était primordial. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span class="link" d\'outil d\'exploration </span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était.'
+            this.sentence = 'Une façon ludique de lire un livre dit classique. Tous les adolescents d\'aujourd\'hui sont à l\'aise avec les usages des smartphones, c\'est pourquoi le choix de deux objets simples était primordial. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span class="link"> d\'outil d\'exploration </span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était.'
             this.src = '/assets/images/phone.gif'
+          } 
+
+          if (this.novlangue) {
+            this.subtitle = 'LOREM'
+            this.title = 'IPSUM DOLOR SIT',
+            this.sentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+            this.src ='/assets/images/phone.gif'
           } 
 
           break;
@@ -291,6 +320,13 @@ export default {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> un nouveau langage.'
             this.sentence = 'Qui dit nouvel univers, dit nouveau langage. George Orwell, en écrivant 1984, a mis en place un nouveau système de communication appelé la novlangue. Il s\'agit de la langue officielle du monde d\'Oceania. Le principe est simple : plus on diminue le nombre de mots d\'une langue, plus on diminue le nombre de concepts avec lesquels les gens peuvent réfléchir, plus on réduit les finesses du langage, moins les gens sont capables de réfléchir, et plus ils raisonnent à l\'affect.  </br> Saurez-vous parler le novlangue ?'
+            this.src = null
+          } 
+
+          if (this.novlangue) {
+            this.subtitle = 'LOREM'
+            this.title = 'IPSUM DOLOR SIT',
+            this.sentence = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
             this.src = null
           } 
 
@@ -374,7 +410,27 @@ export default {
 
     addListeners () {
       window.addEventListener('resize', this.onResize)
+      this.links.forEach((link) => {
+        link.addEventListener('mouseover', this.showOverlay)
+        link.addEventListener('mouseout', this.hideOverlay)
+      })
+      Emitter.on('GLOBAL:CHECKED', this.setLanguage)
+      
     },
+
+    showOverlay () {
+      this.$el.querySelector('.overlay').classList.add('visible')
+    },
+
+    hideOverlay () {
+      this.$el.querySelector('.overlay').classList.remove('visible')
+    },
+
+    setLanguage () {
+      this.novlangue = !this.novlangue
+      this.getContent(this.step)
+    }, 
+  
 
     removeListeners () {
       window.removeEventListener('resize', this.onResize)
@@ -490,12 +546,6 @@ export default {
      justify-content center
      flex-direction column
 
-.link
-  color color_blue!important
-  text-decoration underline!important
-  font-family "circularblack"!important
-  cursor pointer!important
-
 
 .cross 
   position absolute
@@ -518,4 +568,28 @@ export default {
 .content__inner 
   +For-phone-only()
     overflow scroll!important
+
+
+
+.overlay
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  margin-left: -60px;
+  margin-top: -60px;
+  position: absolute;
+  z-index: 10;
+  display flex
+  align-items center
+  justify-content center
+  opacity 0
+  visibility hidden
+  pointer-events none
+
+  &.visible
+    opacity 1
+    visibility visible
+
+  img
+    width 30%
 </style>

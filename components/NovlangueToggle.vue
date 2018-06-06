@@ -43,7 +43,7 @@ export default {
         if(this.$refs.toggleNovlangue.checked) {
             Emitter.emit('GLOBAL:CHECKED')
         } else {
-            Emitter.emit('GLOBAL:UNCHECKED')
+            Emitter.emit('GLOBAL:CHECKED')
         }
     }
   },

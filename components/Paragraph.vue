@@ -36,7 +36,7 @@ export default {
 
 }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus">
 .paragraph
 	padding 100px 70px 70px 70px
 
@@ -109,5 +109,12 @@ export default {
 		+For-phone-only()
 			font-size 12px
 			line-height 30px
+
+		.link
+			color color_blue
+			color color_blue
+			text-decoration underline
+			font-family "circularblack"
+			cursor pointer
 
 </style>
