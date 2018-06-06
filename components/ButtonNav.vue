@@ -54,21 +54,40 @@ export default {
         position absolute
         bottom 100px
         left 70px
+
+        +For-wide()
+            bottom 70px
+            left 30px
+            
+        
+        +For-large()
+            bottom 50px 
+    
+        
+        +For-tablet-only()
+            position static
+            align-self flex-start
+            margin-top 30px
+
+        +For-phone-only()
+            margin-bottom 30px
         
         .btn--previous
-            margin-right 10px
+            margin-right 20px
             opacity 0.3
-        .btn--next 
-            margin-left 10px
         
         &--cta
-            .btn--previous
-                background-color color_blue
-                color color_white
-                opacity 1
-                border none
-            .btn--next
-                background-color rgba(44, 98, 255, 0.3)
-                border none
-                color color_blue
+            .btn
+                &--previous
+                    background-color color_blue
+                    color color_white
+                    opacity 1
+                    border none
+                &--next
+                    background-color rgba(44, 98, 255, 0.3)
+                    border none
+                    color color_blue
+
+                    +For-s-phone-only()
+                        margin-top 10px
 </style>

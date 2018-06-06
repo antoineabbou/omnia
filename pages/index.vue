@@ -211,8 +211,8 @@ export default {
   
     .content 
       position relative
-      width 100vw 
-      height 100vh
+      width 100% 
+      height 100%
 
       .content__inner
         position relative
@@ -220,10 +220,8 @@ export default {
         align-items center 
         justify-content center 
         background color_blue
-        border 80px solid color_white
-        text-align center
-        width 100vw 
-        height 100vh
+        text-align center 
+        height 100%
 
         .text
           .title
@@ -231,10 +229,28 @@ export default {
             font-family "circularblack"
             color color_white 
 
+            +For-wide()
+              font-size 30px
+
+            +For-large()
+              font-size 28px
+            
+            +For-phone-only()
+              font-size 20px
+
           .logo
             width 250px 
             height auto 
             margin 60px 0px
+
+            +For-wide()
+              width 200px
+
+            +For-large() 
+              width 180px
+            
+            +For-phone-only()
+              width 100px
 
           .sentence
             font-size 24px 
@@ -242,11 +258,24 @@ export default {
             color white
             max-width 290px
             margin auto
+
+            +For-wide()
+              font-size 18px
+            
+            +For-large()
+              font-size 16px
+            
+            +For-phone-only()
+              max-width 150px
+              font-size 14px
         
       .link
         position absolute
-        bottom 30px
+        bottom -45px
         left 0; right 0;
         text-align center
+
+        +For-wide()
+          bottom -37px
 
 </style>

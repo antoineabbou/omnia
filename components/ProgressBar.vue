@@ -57,11 +57,18 @@ export default {
 <style lang="stylus" scoped>
 .progress-bar
     position absolute
-    bottom -45px
+    bottom -40px
     width 130px 
     left 0
     right 0
     margin auto
+
+    +For-wide()
+        bottom -35px
+
+    +For-phone-only()
+        right auto
+
     .progress 
         width 100%
         height 3px

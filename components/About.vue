@@ -1,5 +1,5 @@
 <template>
-    <div class="grid about"> 
+    <div class="about"> 
         <div class="part part--left">
             <h3 class="stagger subtitle"> Qui ? </h3>
             <h1 class="stagger title"> À propos </h1>
@@ -143,37 +143,89 @@ export default {
     .content__inner
         .about
             background color_blue
-            display flex
-            align-items center 
-            justify-content center
+            display none
+            // align-items center 
+            // justify-content center
             height 100%
             padding 100px
+            position relative
+            z-index 2
+
+            +For-wide()
+                padding 50px
+            
+            +For-tablet-only()
+                padding 70px
+                flex-direction column
+                overflow scroll
+
+                +For-phone-only()
+                    padding 30px 
 
             .part
                 width 50%
                 height 100%
                 position relative
+                
+                +For-tablet-only()
+                    width 100%
+                    height auto
 
             .part--left
                 margin-right 20px
+
+                +For-tablet-only()
+                    margin-right 0px
 
                 .subtitle 
                     text-transform uppercase
                     color color_grey_light
                     font-family "circularbook"
                     font-size 18px
-                
+                    
+                    +For-wide()
+                        font-size 14px
+                    
+                    +For-tablet-only()
+                        font-size 18px 
+                    
+                    +For-phone-only()
+                        font-size 14px
+
                 .title
                     font-family "circularblack"
                     color color_white
                     font-size 42px 
                     line-height 48px
+
+                    +For-wide()
+                        font-size 36px
+                        line-height 42px
+
+                    +For-tablet-only()
+                        font-size 42px
+                        line-height 48px
+                    
+                    +For-phone-only()
+                        font-size 36px
+                        line-height 42px
+
                 
                 .sentence
                     margin-top 40px
                     color white
                     font-family "circularbook"
                     font-size 14px
+
+                    +For-wide()
+                        margin-top 20px
+                        font-size 13px
+
+                    +For-tablet-only()
+                        font-size 14px
+                    
+                    +For-phone-only()
+                        font-size 13px
 
                 .sentence--bold
                     font-family "circularbold"
@@ -186,8 +238,17 @@ export default {
                     font-size 14px
                     padding 0
                     
+                    +For-wide()
+                        font-size 13px
+                    
+                    +For-tablet-only()
+                        font-size 14px
+                    
                     li 
                         margin-top 40px
+
+                        +For-wide()
+                            margin-top 30px
 
                         .role
                             font-size 12px
@@ -199,11 +260,27 @@ export default {
                     bottom 0px
                     font-size 14px
 
+                    +For-wide()
+                        font-size 13px
+
+                    +For-tablet-only()
+                        position static
+                        margin-top 30px
+                        font-size 14px
+
+                    +For-phone-only()
+                        font-size 13px
+
                 
             .part--right
                 margin-left 150px
                 display flex
                 align-items flex-end
+
+                +For-tablet-only()
+                    display block
+                    margin-left 0px
+                    margin-top 50px
                 
 
                 .sentence
@@ -211,10 +288,23 @@ export default {
                     font-family "circularbook"
                     color color_white
                     margin-top 30px
+
+                    +For-wide()
+                        font-size 13px
+                    
+                    +For-tablet-only()
+                        font-size 14px
+
+                    +For-phone-only()
+                        font-size 13px
+
                 
                 .logos
                     display flex
                     align-items center
+
+                    +For-phone-only() 
+                        flex-direction column
 
                     .logo
                         &--gobelins
@@ -224,6 +314,9 @@ export default {
 
                     .sentence
                         margin 0px 25px
+
+                        +For-phone-only()
+                            margin 10px auto
 
 
                     

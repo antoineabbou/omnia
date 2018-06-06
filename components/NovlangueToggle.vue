@@ -60,12 +60,30 @@ export default {
 .novlangue-toggle
     display flex
     position absolute
-    top 30px 
-    right 75px
+    top -30px 
+    right 0px
+
+    +For-wide()
+        top -40px
+    
+    +For-phone-only()
+        right 0px
+        left 0px
+        margin auto
+        align-items center
+        justify-content center
+
     .sentence
         font-family "circularbook"
         font-size 14px
         color color_black
+
+        +For-large()
+            font-size 12px
+        
+        +For-tablet-only()
+            font-size 14px
+
     .checkbox
         position relative
         display inline-block

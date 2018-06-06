@@ -1,15 +1,16 @@
 <template>
   <section class="layout layout--presentation">
     <img class="cross" src="../static/assets/images/logos/cross.svg" alt="cross"/>
-    <app-novlangue-toggle/>
-    <app-header/>
 
     <div class="content">
+        <app-novlangue-toggle/>
       	<div class="content__inner" ref="vsSection">
 			    <div class="grid"> 
             <div class="part part--left">
-              <img class="image" ref="image" :src=src alt="image"/>
+              <img class="image" ref="image" v-show="step < 3" :src=src alt="image"/>
               <img class="circle" ref="circle" v-show="step === 2" src="../static/assets/images/circle.png" alt="circle"/>
+
+              <app-translator v-show="step===3"/>
             </div>
 
             <div class="part part--right">
@@ -53,6 +54,7 @@ import AppButtonNav from '~/components/ButtonNav.vue'
 import AppProgressBar from '~/components/ProgressBar.vue'
 import AppAbout from '~/components/About.vue'
 import AppNovlangueToggle from '~/components/NovlangueToggle.vue'
+import AppTranslator from '~/components/Translator.vue'
 
 // Libs
 import {TweenMax, Power2, TimelineLite} from 'gsap'
@@ -67,7 +69,8 @@ export default {
     AppButtonNav,
     AppProgressBar,
     AppAbout,
-    AppNovlangueToggle
+    AppNovlangueToggle,
+    AppTranslator
     },
   data () {
     return {
@@ -87,6 +90,7 @@ export default {
     } 
   },
   mounted () {
+    document.body.style.margin = "0px"
     this.engine = loop(this.loop)
     this.engine.start()
     
@@ -127,8 +131,6 @@ export default {
 
       let ctaX = mouseX * 20
       let ctaY = mouseY * 20
-      
-      console.log(ctaX)
 
       this.easing.cta.x += (ctaX - this.easing.cta.x) * 0.2
       this.easing.cta.y += (ctaY - this.easing.cta.y) * 0.2
@@ -152,8 +154,16 @@ export default {
           clearProps: 'all'
         }
       })
+
+      if(this.step === 2) {
+        this.goToNextStepTimeline.to(this.$refs.circle, 0.1, {
+          opacity: 0,
+          ease: Power4.easeOut
+        })
+      }
+
       this.goToNextStepTimeline.add('start')
-      .to('.part--left', 0.75, {
+      .to('.image', 0.75, {
         yPercent: 100,
         ease: Power4.easeOut
       }, 'start')
@@ -162,6 +172,7 @@ export default {
         yPercent: -100,
         ease: Power4.easeOut
       }, 'start')
+
 
       setTimeout(() => {
         this.step ++
@@ -174,12 +185,21 @@ export default {
       }, 700);
 
 
-      this.goToNextStepTimeline.to('.part--left', 0.75, {
+      this.goToNextStepTimeline.to('.image', 0.75, {
         yPercent: 0,
         ease: Power4.easeOut
       }, 'start+=1')
 
-      .to('.part--right', 0.75, {
+      if(this.step === 1) {
+        this.goToNextStepTimeline.to(this.$refs.circle, 0.75, {
+          opacity: 1,
+          ease: Power4.easeOut
+        }, 'start+=1.6')
+      }
+
+      
+
+      this.goToNextStepTimeline.to('.part--right', 0.75, {
         yPercent: 0,
         ease: Power4.easeOut
       }, 'start+=1')
@@ -195,7 +215,7 @@ export default {
         }
       })
       this.goToPreviousStepTimeline.add('start')
-      .to('.part--left', 0.75, {
+      .to('.image', 0.75, {
         yPercent: 100,
         ease: Power4.easeOut
       }, 'start')
@@ -216,7 +236,7 @@ export default {
       }, 700);
 
 
-      this.goToPreviousStepTimeline.to('.part--left', 0.75, {
+      this.goToPreviousStepTimeline.to('.image', 0.75, {
         yPercent: 0,
         ease: Power4.easeOut
       }, 'start+=1')
@@ -282,12 +302,17 @@ export default {
     },
 
     showAbout() {
+      this.$el.querySelector('.about').style.display = 'flex'
       this.showAboutTimeline = new TimelineLite({
         onComplete: () => {
           clearProps: 'all'
         }
       })
       this.showAboutTimeline.add('start')
+      .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+        opacity: 0,
+        ease: Expo.easeOut
+      })
 
       .to('.bottom-nav', 0.75, {
         opacity: 0,
@@ -315,6 +340,9 @@ export default {
 
     hideAbout() {
       this.hideAboutTimeline = new TimelineLite({
+        onComplete: () => {
+          this.$el.querySelector('.about').style.display = 'none'
+        }
       })
       this.hideAboutTimeline.add('start')
 
@@ -328,7 +356,12 @@ export default {
       .to('.bottom-nav', 0.75, {
         opacity: 1,
         ease: Expo.easeOut
-      })
+      }, 'end')
+
+      .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+        opacity: 1,
+        ease: Expo.easeOut
+      }, 'end')
     
     },
 
@@ -406,7 +439,6 @@ export default {
 			height 100%
 			overflow hidden
 
-
 			.grid
 				display flex
 				align-items center
@@ -417,15 +449,21 @@ export default {
 					width 50%
 					height 100%
 					position relative
+
 					img
 						width 100%
 						// height 100%
+
 
 .part--left
   margin-right 10px!important
   display flex!important
   align-items center!important
   position relative
+
+  +For-tablet-only()
+     width 0%!important
+     margin 0 auto!important
 
   .image
     z-index 1
@@ -436,15 +474,28 @@ export default {
     margin auto;
     z-index 0
     width 70%!important
+    opacity 0
+
+    +For-wide()
+      width 55%!important
 
 .part--right 
   margin-left 10px!important
+
+  +For-tablet-only()
+     width 100%!important
+     margin 0 auto!important
+     display flex
+     align-items center
+     justify-content center
+     flex-direction column
 
 .link
   color color_blue!important
   text-decoration underline!important
   font-family "circularblack"!important
   cursor pointer!important
+
 
 .cross 
   position absolute
@@ -455,5 +506,16 @@ export default {
   margin auto
   opacity 0
 
+  +For-wide()
+    bottom 20px
 
+
+.grid
+  +For-phone-only()
+    display block!important
+    height auto!important
+
+.content__inner 
+  +For-phone-only()
+    overflow scroll!important
 </style>
