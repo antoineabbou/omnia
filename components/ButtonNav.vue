@@ -74,7 +74,6 @@ export default {
         
         .btn--previous
             margin-right 20px
-            opacity 0.3
         
         &--cta
             .btn

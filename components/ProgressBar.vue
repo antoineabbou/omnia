@@ -62,6 +62,7 @@ export default {
     left 0
     right 0
     margin auto
+    opacity 0
 
     +For-wide()
         bottom -35px

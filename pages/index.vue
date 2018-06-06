@@ -5,10 +5,11 @@
     <div class="content">
       <div class="content__inner" ref="vsSection">
         <div class="text"> 
-          <h1 class="title"> Bienvenue sur Omnia </h1>
-          <img class="logo" src="../static/assets/svg/logo_omnia--white.svg" alt="logo"/>
-          <p class="sentence"> Êtes-vous prêt à rentrer dans un nouveau monde ? </p>
+          <h1 class="title stagger"> Bienvenue sur Omnia </h1>
+          <img class="logo stagger" src="../static/assets/images/logos/logo-white.gif" alt="logo"/>
+          <p class="sentence stagger"> Êtes-vous prêt à rentrer dans un nouveau monde ? </p>
         </div>
+        <div class="press-bar"> </div>
       </div>
       <a class="link"> Maintenir pour continuer </a>
     </div>
@@ -45,7 +46,7 @@ export default {
   created () {
   },
   mounted () {
-    this.value = 0
+    this.width = 0
     this.node = this.$el.querySelector('.link')
     this.longpress = false;
     this.presstimer = null;
@@ -56,6 +57,8 @@ export default {
     this.addListeners()
     this.$nextTick(this.onResize)
     console.log(PIXI)
+
+    this.initAnimation()
     // this.renderer = PIXI.autoDetectRenderer(800, 600);
     // document.body.appendChild(this.renderer.view);
     // this.renderer.view.style.position = 'absolute'
@@ -93,6 +96,57 @@ export default {
   },
 
   methods: {
+    
+    initAnimation () {
+      this.initTimeline = new TimelineLite()
+      this.initTimeline.to(this.$refs.vsSection, 1, {
+        width: '100%',
+        ease: Expo.easeOut
+      }, 'start')
+      .to(this.$refs.vsSection, 1, {
+        height: '100%',
+        ease: Expo.easeOut
+      }, 'start+=1')
+      .staggerFrom('.stagger', 0.8, {
+        opacity: 0, 
+        cycle: {
+          y: (i) => {
+            return (i + 1) * 20
+          }
+        },
+        ease: Power3.easeOut
+      }, 0.2)
+      .to('.link', 1, {
+        opacity: 1, 
+        ease: Expo.easeOut
+      })
+      
+    }, 
+
+    lastAnimation () {
+      this.lastTimeline = new TimelineLite( { 
+        onComplete: () => {
+          setTimeout(() => {
+            this.$router.push({ path: 'presentation' })  
+          }, 400);
+        }
+      })
+      this.lastTimeline.add('start')
+      this.lastTimeline.to('.text', 0.75, {
+        scale: 1.2, 
+        opacity: 0,
+        ease: Expo.easeOut
+      }, 'start')
+      .to(this.$refs.vsSection, 1.3, {
+        opacity: 0, 
+        ease: Expo.easeOut
+      }, 'start')
+      .to('.link', 0.75, {
+        opacity: 0, 
+        ease: Expo.easeOut
+      }, 'start')
+    },
+    
     onKeyDown ( event ) {
       console.log("keydown");
     },
@@ -181,16 +235,19 @@ export default {
 
     render() {
       if(this.pressing) {
-        if (this.value < 2) {
-          this.value += 0.01
-          console.log(this.value)
+        if(this.width < 100) {
+          this.width += 2
         }
-      } else {
-        if (this.value > 0) {
-          this.value -= 0.01
-          console.log(this.value)
-        }
+        if(this.width >= 100) {
+          this.complete = true
+          this.lastAnimation()
+        } 
+      } else { 
+        if(this.width > 0 && !this.complete) this.width -= 2
       }
+
+      console.log(this.width)
+      TweenMax.to('.press-bar', 0, { width: this.width + '%'}   )
     }
 
 
@@ -215,13 +272,16 @@ export default {
       height 100%
 
       .content__inner
-        position relative
+        position absolute
+        top 0
+        bottom 0
         display flex
         align-items center 
         justify-content center 
         background color_blue
         text-align center 
-        height 100%
+        height 1px
+        width 0px
 
         .text
           .title
@@ -269,8 +329,16 @@ export default {
               max-width 150px
               font-size 14px
         
+        .press-bar
+          position absolute
+          left 0; bottom 0;
+          height 4px
+          width 0
+          background white
+          
       .link
         position absolute
+        opacity 0
         bottom -45px
         left 0; right 0;
         text-align center

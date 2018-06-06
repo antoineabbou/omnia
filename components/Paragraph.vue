@@ -112,9 +112,26 @@ export default {
 
 		.link
 			color color_blue
-			color color_blue
 			text-decoration underline
 			font-family "circularblack"
 			cursor pointer
+			font-size 16px
+			line-height 40px
+
+			+For-wide()
+				font-size 14px
+				line-height 32px
+				
+			+For-large()
+				font-size 12px
+				line-height 30px
+			
+			+For-tablet-only()
+				font-size 16px
+				line-height 40px
+			
+			+For-phone-only()
+				font-size 12px
+				line-height 30px
 
 </style>

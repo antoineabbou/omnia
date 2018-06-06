@@ -39,6 +39,7 @@ export default {
 <style lang="stylus" scoped>
 
   .footer
+    opacity 0
     position absolute 
     bottom -40px
     right 0px

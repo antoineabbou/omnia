@@ -58,6 +58,7 @@ export default {
 
 
 .novlangue-toggle
+    opacity 0
     display flex
     position absolute
     top -30px 
