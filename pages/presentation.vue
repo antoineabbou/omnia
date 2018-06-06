@@ -95,7 +95,7 @@ export default {
     } 
   },
   mounted () {
-    this.links = this.$el.querySelectorAll('.link')
+    this.links = this.$el.querySelectorAll('.paragraph .link')
     document.body.style.margin = "0px"
     this.engine = loop(this.loop)
     this.engine.start()
@@ -150,7 +150,12 @@ export default {
 
       this.goToNextStepTimeline = new TimelineLite({
         onComplete: () => {
-          clearProps: 'all'
+          clearProps: 'all',
+          this.links = this.$el.querySelectorAll('.paragraph .link')
+          this.links.forEach((link) => {
+            link.addEventListener('mouseover', this.showOverlay)
+            link.addEventListener('mouseout', this.hideOverlay)
+          })
         }
       })
 
@@ -218,9 +223,22 @@ export default {
     goToPreviousStep () {
       this.goToPreviousStepTimeline = new TimelineLite({
         onComplete: () => {
-          clearProps: 'all'
+          clearProps: 'all',
+          this.links = this.$el.querySelectorAll('.paragraph .link')
+          this.links.forEach((link) => {
+            link.addEventListener('mouseover', this.showOverlay)
+            link.addEventListener('mouseout', this.hideOverlay)
+          })
         }
       })
+
+      if(this.step === 2) {
+        this.goToPreviousStepTimeline.to(this.$refs.circle, 0.1, {
+          opacity: 0,
+          ease: Power4.easeOut
+        })
+      }
+
       this.goToPreviousStepTimeline.add('start')
       .to('.image', 0.75, {
         yPercent: 100,
