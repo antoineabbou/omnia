@@ -31,7 +31,6 @@ export default {
 
   mounted () {
     this.addListeners()
-    console.log(this.$refs.toggleNovlangue)
   },
 
   methods: {

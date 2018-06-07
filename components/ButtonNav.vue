@@ -56,7 +56,7 @@ export default {
         left 70px
 
         +For-wide()
-            bottom 70px
+            bottom 30px
             left 30px
             
         
@@ -70,10 +70,14 @@ export default {
             margin-top 30px
 
         +For-phone-only()
-            margin-bottom 30px
+            // padding-bottom 30px
         
         .btn--previous
             margin-right 20px
+
+        .btn--previous, .btn--next
+            +For-s-phone-only()
+                margin-top 10px
         
         &--cta
             .btn

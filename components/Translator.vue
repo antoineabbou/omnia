@@ -48,11 +48,9 @@ export default {
     }, 
 
     checkWords() {
-        console.log(this.message)
         if(this.currentLanguage === 'novlangue') {
             for(let i = 0; i < this.novlangueArrayOfWords.length; i++) {
                 if (this.message.toLowerCase() === this.novlangueArrayOfWords[i]) {
-                    console.log('match')
                     this.translatedMessage = this.frenchArrayOfWords[i]
                 }   
             }
@@ -68,7 +66,6 @@ export default {
     },
 
     changeLanguage() {
-        console.log(this.currentLanguage)
         if(this.currentLanguage === 'novlangue') { 
             this.currentLanguage = 'french'
             this.placeholder = 'Écrivez votre pensée française'

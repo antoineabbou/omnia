@@ -1,7 +1,7 @@
 <template>
   <section class="layout layout--home">
     <app-header/>
-    <app-loader v-show="!loaded"/>
+    <app-loader v-show="!loaded && !this.mobile"/>
 
     <div class="content">
       <div class="content__inner" ref="vsSection">
@@ -44,12 +44,14 @@ export default {
   },
   data () {
     return {
-      loaded: false
+      loaded: false, 
+      mobile: true
     }
   },
   created () {
   },
   mounted () {
+    this.mobile = window.innerHeight <= 768
     setTimeout(() => {
       TweenMax.to('.loader__img', 0.2, {
         opacity: 0,
@@ -66,6 +68,9 @@ export default {
             this.bindAll()
             this.addListeners()
             this.$nextTick(this.onResize)
+
+            // console.log
+
 
             this.initAnimation()
           }
@@ -129,17 +134,14 @@ export default {
     },
     
     onKeyDown ( event ) {
-      console.log("keydown");
     },
 
     onClick ( event ) {
       this.animate()
-      console.log("click");
       this.pressing = true;
     },
 
     onRelease ( event ) {
-      console.log("release");
       this.pressing = false;
     },
 
@@ -196,6 +198,9 @@ export default {
       } else {
         this.removeScroll()
       }
+
+      let layout = document.querySelector('.layout')
+      layout.style.height = window.innerHeight + 'px'
     },
 
     animate() {
@@ -226,8 +231,6 @@ export default {
       } else { 
         if(this.width > 0 && !this.complete) this.width -= 2
       }
-
-      console.log(this.width)
       TweenMax.to('.press-bar', 0, { width: this.width + '%'}   )
     }
 

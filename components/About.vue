@@ -22,7 +22,7 @@
                 <div class="logos"> 
                     <img class="logo logo--gobelins" src="../static/assets/images/logos/gobelins.svg" alt="Gobelins"/> 
                     <p class="sentence"> une école de la </p>
-                    <img class="logo logo--cci" src="../static/assets/images/logos/cci.png" alt="CCI"/>
+                    <img class="logo logo--cci" src="../static/assets/images/logos/logo_cci.svg" alt="CCI"/>
                 </div>
                 <p class="sentence"> Nous remercions l’ensemble de l’équipe pédagogique de l’école des Gobelins pour leurs conseils et accompagnements qui a permis au projet Omnia de voir le jour ! </p>
             </div>
@@ -155,6 +155,10 @@ export default {
                 padding 50px
             
             +For-tablet-only()
+                position absolute
+                top 0 
+                left 0
+                opacity 0
                 padding 70px
                 flex-direction column
                 overflow scroll
@@ -246,9 +250,6 @@ export default {
                     
                     li 
                         margin-top 40px
-
-                        +For-wide()
-                            margin-top 30px
 
                         +For-wide()
                             margin-top 20px

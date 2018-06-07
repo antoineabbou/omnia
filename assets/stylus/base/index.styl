@@ -11,6 +11,8 @@ html
   margin 0!important
   padding 0!important
   overflow hidden
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+
 
 *,
 *:before,
@@ -18,13 +20,20 @@ html
   box-sizing border-box
   margin 0
 
+::-webkit-scrollbar { 
+  display: none; 
+}
+
 body 
+  overflow hidden!important
   margin 0!important
   padding 0!important
   -webkit-user-select: none;  /* Chrome all / Safari all */
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;          /* Likely future */ 
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+
 
 .hide-mobile
   +For-large-only()
@@ -40,6 +49,7 @@ body
 
 .layout
   border solid 80px color_white !important
+  height 100%
 
   +For-wide() 
     border solid 60px color_white !important

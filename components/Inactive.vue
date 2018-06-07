@@ -61,12 +61,10 @@ export default {
 
     removeAllBigBrothers() {
       let bbContainer = document.querySelector('.big-brother-container')
-      console.log(bbContainer)
       TweenMax.to('.big-brother-container', 0.6, {
         opacity: 0, 
         ease: Expo.easeOut, 
         onComplete: () => {
-          console.log('done')
           bbContainer.style.display = "none"
           bbContainer.remove()
         }
@@ -138,8 +136,9 @@ export default {
     background rgba(0, 0, 0, 0.7)
     z-index 1000
     opacity 0
+    overflow hidden
 
-.big-title {
+.big-title 
   font-family: 'circularblack';
   font-size: 130px;
   color: color_white;
@@ -147,7 +146,9 @@ export default {
   display: block;
   text-transform: uppercase;
   white-space: nowrap;
-}
+
+  +For-phone-only()
+    font-size 80px
 
 .centered {
 //   position: absolute;

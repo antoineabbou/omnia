@@ -11,7 +11,7 @@
 
     <app-inactive/>
     <div class="overlay"> 
-      <img src="../static/assets/images/phone.gif" alt="phone"/>
+      <img :src="dataSrc" alt="phone"/>
     </div>
 
     <img class="cross" src="../static/assets/images/logos/cross.svg" alt="cross"/>
@@ -21,7 +21,7 @@
       	<div class="content__inner" ref="vsSection">
 			    <div class="grid"> 
             <div class="part part--left">
-              <img class="image" ref="image" v-show="step < 3" :src=src alt="image"/>
+              <img class="image" ref="image" :class="{ resized: step === 2 }" v-show="step < 3" :src=src alt="image"/>
               <img class="circle" ref="circle" v-show="step === 2" src="../static/assets/images/circle.png" alt="circle"/>
 
               <app-translator v-show="step===3"/>
@@ -90,12 +90,13 @@ export default {
     },
   data () {
     return {
+      dataSrc: '/assets/images/phone.gif',
       inactive: false,
       currentLanguage: 'french',
       step: 0,
       subtitle: 'Qu\'est-ce ?', 
       title: 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
-      sentence: 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link" data-src="/assets/images/city.jpg">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link">outil augmenté</span> de la lecture. ',
+      sentence: 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link" data-src="/assets/images/phone.gif">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/phone.gif">outil augmenté</span> de la lecture. ',
       src: '/assets/images/city.jpg'
     }
   },
@@ -124,6 +125,7 @@ export default {
     this.$nextTick(this.onResize)
     this.startTimer(5000)
 
+
     this.btnFooter = (this.$el.querySelector('.footer .link'))
     this.about = this.$el.querySelector('.about')
     this.cross = this.$el.querySelector('.cross')
@@ -133,7 +135,6 @@ export default {
 
     this.btnNext = this.$el.querySelector('.btn--next')
     this.btnPrevious = this.$el.querySelector('.btn--previous')
-    console.log(this.btnNext)
 
     this.btnNext.addEventListener('click', this.goToNextStep)
     this.btnPrevious.addEventListener('click', this.goToPreviousStep)
@@ -220,7 +221,6 @@ export default {
         })
       }
 
-      console.log(this.step)
       this.goToNextStepTimeline.add('start')
       .to('.image', 0.75, {
         yPercent: 100,
@@ -338,7 +338,7 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
-            this.sentence = 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est le pari risqué d\'Omnia, permettre une <span class="link">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link">outil augmenté</span> de la lecture. ',
+            this.sentence = 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est le pari risqué d\'Omnia, permettre une <span data-src="/assets/images/phone.gif" class="link">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/phone.gif">outil augmenté</span> de la lecture. ',
             this.src ='/assets/images/city.jpg'
           } 
 
@@ -357,14 +357,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> le livre qui vous lie.'
-            this.sentence = '<span class="link">1984 de George Orwell</span>, choix judicieux par rapport à l\'objectif : sensibiliser les adolescents à l\'usage de leurs données, mais surtout leur redonner le goût de la lecture. À l\'ère où les questions se posent sur l\'usage de nos données personnelles, à l\'ère où des <span class="link">lois sont votées</span> pour nous protéger, à l\'ère où l\'utilisateur veut avoir le choix, nous ne pouvions pas trouver meilleur récit qui corresponde à ce thème si important à notre époque.'
+            this.sentence = '<span data-src="/assets/images/phone.gif" class="link">1984 de George Orwell</span>, choix judicieux par rapport à l\'objectif : sensibiliser les adolescents à l\'usage de leurs données, mais surtout leur redonner le goût de la lecture. À l\'ère où les questions se posent sur l\'usage de nos données personnelles, à l\'ère où des <span data-src="/assets/images/phone.gif" class="link">lois sont votées</span> pour nous protéger, à l\'ère où l\'utilisateur veut avoir le choix, nous ne pouvions pas trouver meilleur récit qui corresponde à ce thème si important à notre époque.'
             this.src = '/assets/images/book.jpg'
           }
           
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> le livre liant.'
-            this.sentence = '<span class="link">1984 de George Orwell</span>, grand auteur de son époque, n\'est pas un choix anodin. Il remplit l\'objectif : instruire la jeunesse à la gestion de ses donnéepersos. Les donnéespersos sont importantes et sont dorénavant protégées par des prolois. Il s\'agit d\'un sujet sociétal actuel.',
+            this.sentence = '<span data-src="/assets/images/phone.gif" class="link">1984 de George Orwell</span>, grand auteur de son époque, n\'est pas un choix anodin. Il remplit l\'objectif : instruire la jeunesse à la gestion de ses donnéepersos. Les donnéespersos sont importantes et sont dorénavant protégées par des prolois. Il s\'agit d\'un sujet sociétal actuel.',
             this.src ='/assets/images/book.jpg'
           } 
           break;
@@ -374,14 +374,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
-            this.sentence = 'Une façon ludique de lire un livre dit classique. Le choix des supports était primordial, ils se sont orientés instinctivement vers un smartphone et un livre. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span class="link">d\'outil d\'exploration</span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était. '
+            this.sentence = 'Une façon ludique de lire un livre dit classique. Le choix des supports était primordial, ils se sont orientés instinctivement vers un smartphone et un livre. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span data-src="/assets/images/phone.gif" class="link">d\'outil d\'exploration</span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était. '
             this.src = '/assets/images/phone.gif'
           } 
 
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
-            this.sentence = 'Une méthode de lecture approuvée par le Parti car classique. Une nouvelle expérience à portée de toutes les mains via un simple Télécranportable et un livre fourni par le Miniver. Omnia vous <span class="link">guide</span> à travers l\'univers d\'Océania.',
+            this.sentence = 'Une méthode de lecture approuvée par le Parti car classique. Une nouvelle expérience à portée de toutes les mains via un simple Télécranportable et un livre fourni par le Miniver. Omnia vous <span data-src="/assets/images/phone.gif" class="link">guide</span> à travers l\'univers d\'Océania.',
             this.src ='/assets/images/phone.gif'
           } 
 
@@ -404,72 +404,130 @@ export default {
 
           break;
         default:
-          console.log('Sorry, we are out of ' + step + '.');
       }
 
     },
 
     showAbout() {
+      this.$el.querySelector('.button-nav').style.display = 'none'
       this.$el.querySelector('.about').style.display = 'flex'
       this.showAboutTimeline = new TimelineLite({
         onComplete: () => {
           clearProps: 'all'
         }
       })
-      this.showAboutTimeline.add('start')
-      .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
-        opacity: 0,
-        ease: Expo.easeOut
-      })
 
-      .to('.bottom-nav', 0.75, {
-        opacity: 0,
-        ease: Expo.easeOut
-      }, 'start')
-      .to('.about', 0.75, {
-        yPercent: -100,
-        ease: Power4.easeOut
-      }, 'start')
-      .staggerFrom(this.staggerElements, 1.2, {
-        cycle: {
-          y: (i) => {
-            return (i + 1) * 20
-          }
-        },
-        alpha: 0,
-        ease: Expo.easeOut,
-        clearProps: 'opacity'
-      }, 0.1)
-      .to('.cross', 0.75, {
-        opacity: 1
-      })
+      if(window.innerWidth > 768 ) {
+        this.showAboutTimeline.add('start')
+        .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+          opacity: 0,
+          ease: Expo.easeOut
+        })
+
+        .to('.bottom-nav', 0.75, {
+          opacity: 0,
+          ease: Expo.easeOut
+        }, 'start')
+        .to('.about', 0.75, {
+          yPercent: -100,
+          ease: Power4.easeOut
+        }, 'start')
+        .staggerFrom(this.staggerElements, 1.2, {
+          cycle: {
+            y: (i) => {
+              return (i + 1) * 20
+            }
+          },
+          alpha: 0,
+          ease: Expo.easeOut,
+          clearProps: 'opacity'
+        }, 0.1)
+        .to('.cross', 0.75, {
+          opacity: 1
+        })
+      } else {
+        this.$el.querySelector('.grid .part--right').style.display = 'none'
+        this.showAboutTimeline.add('start')
+        .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+          opacity: 0,
+          ease: Expo.easeOut
+        })
+
+        .to('.bottom-nav', 0.75, {
+          opacity: 0,
+          ease: Expo.easeOut
+        }, 'start')
+        .to('.about', 0.75, {
+          opacity: 1,
+          ease: Power4.easeOut
+        }, 'start')
+        .staggerFrom(this.staggerElements, 1.2, {
+          cycle: {
+            y: (i) => {
+              return (i + 1) * 20
+            }
+          },
+          alpha: 0,
+          ease: Expo.easeOut,
+          clearProps: 'opacity'
+        }, 0.1)
+        .to('.cross', 0.75, {
+          opacity: 1
+        })
+
+      } 
       
     },
 
     hideAbout() {
+      this.$el.querySelector('.grid .part--right').style.display = 'flex'
+      this.$el.querySelector('.button-nav').style.display = 'block'
       this.hideAboutTimeline = new TimelineLite({
         onComplete: () => {
+          clearProps: 'all'
           this.$el.querySelector('.about').style.display = 'none'
         }
       })
-      this.hideAboutTimeline.add('start')
+      if(window.innerWidth > 768 ) {
+        this.hideAboutTimeline.add('start')
 
-      .to('.cross', 0.75, {opacity: 0, ease: Expo.easeOut }, 'start')
+        .to('.cross', 0.75, {opacity: 0, ease: Expo.easeOut }, 'start')
 
-      .to('.about', 0.75, {
-        yPercent: 0, 
-        ease: Power4.easeOut
-      }, 'start')
+        .to('.about', 0.75, {
+          yPercent: 0, 
+          ease: Power4.easeOut
+        }, 'start')
 
-      .to('.bottom-nav', 0.75, {
-        opacity: 1,
-        ease: Expo.easeOut
-      }, 'end')
+        .to('.bottom-nav', 0.75, {
+          opacity: 1,
+          ease: Expo.easeOut
+        }, 'end')
 
-      .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
-        opacity: 1,
-        ease: Expo.easeOut
-      }, 'end')
+        .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+          opacity: 1,
+          ease: Expo.easeOut
+        }, 'end')
+
+      } else {
+        this.hideAboutTimeline.add('start')
+
+        .to('.cross', 0.75, {opacity: 0, ease: Expo.easeOut }, 'start')
+
+        .to('.about', 0.75, {
+          opacity: 0, 
+          ease: Power4.easeOut
+        }, 'start')
+
+        .to('.bottom-nav', 0.75, {
+          opacity: 1,
+          ease: Expo.easeOut
+        }, 'end')
+
+        .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
+          opacity: 1,
+          ease: Expo.easeOut
+        }, 'end')
+      }
     
     },
 
@@ -499,7 +557,8 @@ export default {
       Emitter.emit('GLOBAL:INACTIVE')
     }, 
 
-    showOverlay () {
+    showOverlay (e) {
+      this.dataSrc = e.srcElement.getAttribute('data-src')
       this.$el.querySelector('.overlay').classList.add('visible')
     },
 
@@ -547,7 +606,9 @@ export default {
 
     onResize () {
       this.isBpLarge = (window.innerWidth > bpLarge)
-
+      let layout = document.querySelector('.layout')
+      document.body.style.height = window.innerHeight + 'px'
+      layout.style.height = window.innerHeight + 'px'
       // if (this.isBpLarge) {
       //   this.initScroll()
       // } else {
@@ -593,8 +654,7 @@ export default {
 					position relative
 
 					img
-						width 100%
-						// height 100%
+					  width 100%
 
 
 .part--left
@@ -606,10 +666,19 @@ export default {
   +For-tablet-only()
      width 0%!important
      margin 0 auto!important
+     display none
+  
+  .translator
+    +For-tablet-only()
+      display none
 
   .image
     z-index 1
     opacity 0
+
+    &.resized
+      width 75%!important
+      margin auto!important
 
   .circle
     position absolute
@@ -675,12 +744,18 @@ export default {
   visibility hidden
   pointer-events none
 
+  +For-tablet-only()
+    width auto
+
   &.visible
     opacity 1
     visibility visible
 
   img
     width 30%
+
+    +For-tablet-only() 
+      width 80%
 
 .eye
   opacity 0
