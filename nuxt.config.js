@@ -9,7 +9,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Omnia',
+    title: 'Omnia - Le livre qui vous lie',
     meta: [
       { charset: 'utf-8' },
       { name: 'theme-color', content: '#ffffff' },
