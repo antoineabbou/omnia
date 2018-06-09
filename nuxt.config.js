@@ -2,8 +2,7 @@ var path = require('path')
 
 module.exports = {
   env: {
-    environment: process.env.NODE_ENV,
-    mailchimp: (process.env.NODE_ENV == 'production') ? 'https://mailchimp.bonsplants.com' : 'http://mailchimp.bonsplants.dist'
+    environment: process.env.NODE_ENV
   },
   /*
   ** Headers of the page
@@ -16,16 +15,16 @@ module.exports = {
       { name: 'msapplication-TileColor', content: '#2C62FF' },
       { name: 'msapplication-config', content: '/assets/favicons/browserconfig.xml' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Omnia, le livre qui te lie' },
+      { hid: 'description', name: 'description', content: 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture.' },
       { hid: 'twitter:card', name: 'twitter:card', content: 'summary_large_image' },
       { hid: 'twitter:site', name: 'twitter:site', content: '@antoineabbou' },
-      { hid: 'twitter:title', name: 'twitter:title', content: 'Omnia' },
-      { hid: 'twitter:description', name: 'twitter:description', content: 'Le livre qui te lie' },
+      { hid: 'twitter:title', name: 'twitter:title', content: 'Omnia - Le livre qui te lie' },
+      { hid: 'twitter:description', name: 'twitter:description', content: 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture.' },
       { hid: 'twitter:image', name: 'twitter:image', content: 'https://www.bonsplants.com/assets/images/BonsPlants_twitter_share.jpg' },
-      { hid: 'og:title', name: 'og:title', content: 'Omnia' },
+      { hid: 'og:title', name: 'og:title', content: 'Omnia - Le livre qui te lie' },
       { hid: 'og:type', name: 'og:type', content: 'website' },
       { hid: 'og:image', name: 'og:image', content: 'https://www.bonsplants.com/assets/images/BonsPlants_twitter_share.jpg' },
-      { hid: 'og:description', name: 'og:description', content: 'Le livre qui te lie' },
+      { hid: 'og:description', name: 'og:description', content: 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture.' },
       { hid: 'og:site_name', name: 'og:site_name', content: 'Omnia' }
     ],
     link: [
@@ -33,7 +32,7 @@ module.exports = {
       { rel: 'icon', type: "image/png", sizes: '32x32', href: '/assets/favicons/favicon-32x32.png' },
       { rel: 'icon', type: "image/png", sizes: '16x16', href: '/assets/favicons/favicon-16x16.png' },
       { rel: 'manifest', href: '/assets/favicons/site.webmanifest' },
-      { rel: 'mask-icon', href: '/assets/favicons/safari-pinned-tab.svg', color:"#5bbad5" },
+      { rel: 'mask-icon', href: '/assets/favicons/safari-pinned-tab.svg', color:"#2C62FF" },
       { rel: 'shortcut icon', href: '/assets/favicons/favicon.ico' }    
     
     ]

@@ -1,14 +1,15 @@
 <template>
   <section class="layout layout--presentation">
-    <svg class="eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.15 50.62">
-      <path class="pupille" d="M39,23.18a7.92,7.92,0,1,0,7.92,7.92A7.93,7.93,0,0,0,39,23.18Z" transform="translate(-2.43 -0.69)" style="fill:#2c62ff"/>
-      <path
-        id="oeil"
-        d="M74.62,19.34a2,2,0,0,0-2.75.66l-4.64,7.55A38.4,38.4,0,0,0,57.48,17.3l3-7.58a2,2,0,0,0-3.72-1.46L54,15.13a31.91,31.91,0,0,0-13.18-3.9V2.69a2,2,0,1,0-4,0v8.53a31.81,31.81,0,0,0-12.64,3.49L21.68,8.26A2,2,0,1,0,18,9.72l2.78,7A38.14,38.14,0,0,0,10.49,27.09L6.13,20a2,2,0,1,0-3.41,2.09l6,9.82h0l.43.67h0C15.82,44.35,26.88,51.31,39,51.31s23.35-7.1,30-19l.29-.43,6-9.8A2,2,0,0,0,74.62,19.34ZM39,47.31c-10.55,0-20.27-6.13-26.19-16.45,6-9.86,15.62-15.71,25.9-15.71,10.48,0,20.2,6,26.2,16.2C59,41.37,49.35,47.31,39,47.31Z"
-        transform="translate(-2.43 -0.69)"
-        style="fill:#2c62ff"/>
-    </svg>
-
+    <router-link to="/">
+      <svg class="eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.15 50.62">
+        <path class="pupille" d="M39,23.18a7.92,7.92,0,1,0,7.92,7.92A7.93,7.93,0,0,0,39,23.18Z" transform="translate(-2.43 -0.69)" style="fill:#2c62ff"/>
+        <path
+          id="oeil"
+          d="M74.62,19.34a2,2,0,0,0-2.75.66l-4.64,7.55A38.4,38.4,0,0,0,57.48,17.3l3-7.58a2,2,0,0,0-3.72-1.46L54,15.13a31.91,31.91,0,0,0-13.18-3.9V2.69a2,2,0,1,0-4,0v8.53a31.81,31.81,0,0,0-12.64,3.49L21.68,8.26A2,2,0,1,0,18,9.72l2.78,7A38.14,38.14,0,0,0,10.49,27.09L6.13,20a2,2,0,1,0-3.41,2.09l6,9.82h0l.43.67h0C15.82,44.35,26.88,51.31,39,51.31s23.35-7.1,30-19l.29-.43,6-9.8A2,2,0,0,0,74.62,19.34ZM39,47.31c-10.55,0-20.27-6.13-26.19-16.45,6-9.86,15.62-15.71,25.9-15.71,10.48,0,20.2,6,26.2,16.2C59,41.37,49.35,47.31,39,47.31Z"
+          transform="translate(-2.43 -0.69)"
+          style="fill:#2c62ff"/>
+      </svg>
+    </router-link>
     <app-inactive/>
     <div class="overlay"> 
       <img :src="dataSrc" alt="phone"/>
@@ -345,7 +346,7 @@ export default {
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?',
             this.title = 'Omnia, <br> un nouveau monde. ',
-            this.sentence = 'Plongez-vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture. ',
+            this.sentence = 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture. ',
             this.src ='/assets/images/city.jpg'
           } 
 

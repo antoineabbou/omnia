@@ -3,7 +3,7 @@
         <div class="part part--left">
             <h3 class="stagger subtitle"> Qui ? </h3>
             <h1 class="stagger title"> À propos </h1>
-            <p class="stagger sentence"> Nous sommes 5 étudiants en bachelor design et développement interactif à l’école des Gobelins. Nous avons imaginé et réalisé Omnia dans le cadre d’un projet de fin d’année ayant pour thématique : <br> 
+            <p class="stagger sentence"> Nous sommes 5 étudiants en bachelor design et développement interactif à Gobelins, l'école de l'image. Nous avons imaginé et réalisé Omnia dans le cadre d’un projet de fin d’année ayant pour thématique : <br> 
             <span class="stagger sentence--bold">« Le livre du futur pour la jeunesse » </span> 
             <br> <br> 
             Omnia est pour nous un moyen de sensibiliser les jeunes à la lecture mais avant tout à l’utilisation de leurs données personnelles à travers le récit de George Orwell — 1984. </p>
@@ -20,11 +20,15 @@
         <div class="part part--right">
             <div class="test stagger">
                 <div class="logos"> 
-                    <img class="logo logo--gobelins" src="../static/assets/images/logos/gobelins.svg" alt="Gobelins"/> 
+                    <a href="https://gobelins.fr" target="_blank">
+                        <img class="logo logo--gobelins" src="../static/assets/images/logos/gobelins.svg" alt="Gobelins"/> 
+                    </a>
                     <p class="sentence"> une école de la </p>
-                    <img class="logo logo--cci" src="../static/assets/images/logos/logo_cci.svg" alt="CCI"/>
+                    <a href="http://www.cci-paris-idf.fr/" target="_blank">
+                        <img class="logo logo--cci" src="../static/assets/images/logos/logo_cci.svg" alt="CCI"/>
+                    </a>
                 </div>
-                <p class="sentence"> Nous remercions l’ensemble de l’équipe pédagogique de l’école des Gobelins pour leurs conseils et accompagnements qui a permis au projet Omnia de voir le jour ! </p>
+                <p class="sentence"> Nous remercions l’ensemble de l’équipe pédagogique de Gobelins, l'école de l'image, pour leurs conseils et accompagnements  qui a permis au projet Omnia de voir le jour ! </p>
             </div>
         </div>
     </div>
@@ -53,27 +57,27 @@ export default {
         members: [
             { 
                 name: 'ABBOU Antoine',
-                function: 'Presque développeur de map Unity',
+                function: 'Architecte AR - Développeur',
                 portfolio: 'http://antoineabbou.fr'
             },
             { 
                 name: 'CORNIER Bastien',
-                function: 'Directeur technique magique', 
+                function: 'Chief happiness officer - Développeur', 
                 portfolio: 'https://bastiencornier.com/'
             },
             { 
                 name: 'DUBOIS Elisa',
-                function: 'Presque DA Digital',
+                function: 'Manager des internets et du digital - UI/UX designer - DA',
                 portfolio: 'http://elisadubois.fr/'
             },
             { 
                 name: 'MINERVINI Robin',
-                function: 'Master de la lampe torche',
+                function: 'Fils de Steve Jobs - Développeur',
                 portfolio: 'http://www.robinminervini.fr/'
             },
             { 
                 name: 'ROSTOUCHER Camille',
-                function: 'Prêtresse du print',
+                function: 'Pretresse du print et de l\'illustration - Designer graphique',
                 portfolio: 'http://www.camillerostoucher.fr/'
             }
         ]

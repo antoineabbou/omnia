@@ -60,18 +60,13 @@ export default {
           if(this.loaded) {
             this.width = 0
             this.node = this.$el.querySelector('.content')
-            console.log(this.node)
             this.longpress = false;
             this.presstimer = null;
             this.longtarget = null;
 
-
             this.bindAll()
             this.addListeners()
             this.$nextTick(this.onResize)
-
-            // console.log
-
 
             this.initAnimation()
           }
