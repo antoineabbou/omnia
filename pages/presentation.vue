@@ -10,7 +10,7 @@
           style="fill:#2c62ff"/>
       </svg>
     </router-link>
-    <!-- <app-inactive/> -->
+    <app-inactive/>
     <div class="overlay"> 
       <img :src="dataSrc" alt="phone"/>
     </div>
@@ -734,8 +734,8 @@ export default {
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.7);
-  margin-left: -60px;
-  margin-top: -60px;
+  margin-left: -80px;
+  margin-top: -80px;
   position: absolute;
   z-index: 10;
   display flex
@@ -744,6 +744,10 @@ export default {
   opacity 0
   visibility hidden
   pointer-events none
+
+  +For-wide()
+    margin-left: -60px;
+    margin-top: -60px;
 
   +For-tablet-only()
     width auto
