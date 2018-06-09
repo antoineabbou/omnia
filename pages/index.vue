@@ -59,7 +59,8 @@ export default {
           this.loaded = true
           if(this.loaded) {
             this.width = 0
-            this.node = this.$el.querySelector('.link')
+            this.node = this.$el.querySelector('.content')
+            console.log(this.node)
             this.longpress = false;
             this.presstimer = null;
             this.longtarget = null;
