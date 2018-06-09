@@ -6,7 +6,7 @@
     </div>
     
     <div class="button-nav--cta" v-show="step===3">
-        <button v-show="step > 0" class="btn btn--previous"> Acheter Omnia </button>
+        <button v-show="step > 0" class="btn btn--previous"> Acheter le livre </button>
         <button class="btn btn--next"> Télécharger l'application </button>
     </div>
 
@@ -52,7 +52,7 @@ export default {
 <style lang="stylus" scoped>
     .button-nav
         position absolute
-        bottom 100px
+        bottom 40px
         left 70px
 
         +For-wide()

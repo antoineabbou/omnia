@@ -10,7 +10,7 @@
           style="fill:#2c62ff"/>
       </svg>
     </router-link>
-    <app-inactive/>
+    <!-- <app-inactive/> -->
     <div class="overlay"> 
       <img :src="dataSrc" alt="phone"/>
     </div>
@@ -140,7 +140,7 @@ export default {
     this.btnNext.addEventListener('click', this.goToNextStep)
     this.btnPrevious.addEventListener('click', this.goToPreviousStep)
 
-    this.initAnimation()
+    this.$nextTick(this.initAnimation)
   },
 
   methods: {
@@ -686,7 +686,7 @@ export default {
     top 0; right 0; left 0; bottom 0
     margin auto;
     z-index 0
-    width 70%!important
+    width 55%!important
     opacity 0
 
     +For-wide()
