@@ -20,8 +20,8 @@ export default {
         placeholder: 'Écrivez votre pensée novlangue',
         translatedMessage: 'Français',
         currentLanguage: 'novlangue', 
-        novlangueArrayOfWords: ['miniver', 'minipax', 'minilove', 'miniplein'],
-        frenchArrayOfWords: ['ministère de la vérité', 'ministère de la paix', 'ministère de l\'amour', 'ministère de la plénitude']
+        novlangueArrayOfWords: ['miniver', 'minipax', 'minilove', 'miniplein', 'lective', 'donnéespersos', 'prolois', 'télécranportable'],
+        frenchArrayOfWords: ['ministère de la vérité', 'ministère de la paix', 'ministère de l\'amour', 'ministère de la plénitude', 'lecture interactive', 'données personnelles', 'lois pour le peuple', 'téléphone portable']
     }
   },
 

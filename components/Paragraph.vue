@@ -134,4 +134,8 @@ export default {
 				font-size 12px
 				line-height 30px
 
+
+		.bold-italic
+			font-family "circularbolditalic"
+			color rgba(0, 0, 0, 0.7)
 </style>

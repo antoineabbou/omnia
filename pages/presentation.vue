@@ -91,13 +91,13 @@ export default {
     },
   data () {
     return {
-      dataSrc: '/assets/images/phone.gif',
+      dataSrc: '',
       inactive: false,
       currentLanguage: 'french',
       step: 0,
       subtitle: 'Qu\'est-ce ?', 
       title: 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
-      sentence: 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link" data-src="/assets/images/phone.gif">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/phone.gif">outil augmenté</span> de la lecture. ',
+      sentence: 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est la pari risqué d\'Omnia, permettre une <span class="link" data-src="/assets/images/gif/personnage.gif">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/gif/journal.gif">outil augmenté</span> de la lecture. ',
       src: '/assets/images/city.jpg'
     }
   },
@@ -340,14 +340,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br> plus qu\'un univers, <br> une expérience.',
-            this.sentence = 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est le pari risqué d\'Omnia, permettre une <span data-src="/assets/images/phone.gif" class="link">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/phone.gif">outil augmenté</span> de la lecture. ',
+            this.sentence = 'N\'avez-vous jamais rêvé de vous immerger complètement dans l\'histoire que vous être en train de lire ? Mieux encore, d\'interagir avec celle-ci ? C\'est le pari risqué d\'Omnia, permettre une <span data-src="/assets/images/gif/personnage.gif" class="link">lecture interactive</span> qui donne envie. Destiné à des adolescents âgés de 12 à 17 ans, Omnia fait découvrir une nouvelle façon d\'appréhender la lecture. Prendre part à un nouvel univers avec l\'alliance d\'un livre, de prime abord normal, mais au final différent et une application mobile fonctionnant comme un <span class="link" data-src="/assets/images/gif/journal.gif">outil augmenté</span> de la lecture. ',
             this.src ='/assets/images/city.jpg'
           } 
 
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?',
             this.title = 'Omnia, <br> un nouveau monde. ',
-            this.sentence = 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le parisqué d\'Omnia, permettre une Lective qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture. ',
+            this.sentence = 'Plongez vous dans l\'univers de Big Brother et d\'Océania à travers l\'application Omnia. C\'est le <span class="bold-italic">parisqué </span> d\'Omnia, permettre une <span class="bold-italic"> lective </span> qui donne envie. Destiné à la jeunesse prometteuse entre 12 et 17 ans, Omnia vous fera aimer lire. Omnia est Outifort qui vous fera vivre une nouvelle expérience de lecture. ',
             this.src ='/assets/images/city.jpg'
           } 
 
@@ -359,14 +359,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> le livre qui vous lie.'
-            this.sentence = '<span data-src="/assets/images/phone.gif" class="link">1984 de George Orwell</span>, choix judicieux par rapport à l\'objectif : sensibiliser les adolescents à l\'usage de leurs données, mais surtout leur redonner le goût de la lecture. À l\'ère où les questions se posent sur l\'usage de nos données personnelles, à l\'ère où des <span data-src="/assets/images/phone.gif" class="link">lois sont votées</span> pour nous protéger, à l\'ère où l\'utilisateur veut avoir le choix, nous ne pouvions pas trouver meilleur récit qui corresponde à ce thème si important à notre époque.'
+            this.sentence = '<span data-src="/assets/images/gif/orwell.gif" class="link">1984 de George Orwell</span>, choix judicieux par rapport à l\'objectif : sensibiliser les adolescents à l\'usage de leurs données, mais surtout leur redonner le goût de la lecture. À l\'ère où les questions se posent sur l\'usage de nos données personnelles, à l\'ère où des lois sont votées pour nous protéger, à l\'ère où l\'utilisateur veut avoir le choix, nous ne pouvions pas trouver meilleur récit qui corresponde à ce thème si important à notre époque.'
             this.src = '/assets/images/book.jpg'
           }
           
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> le livre liant.'
-            this.sentence = '<span data-src="/assets/images/phone.gif" class="link">1984 de George Orwell</span>, grand auteur de son époque, n\'est pas un choix anodin. Il remplit l\'objectif : instruire la jeunesse à la gestion de ses donnéepersos. Les donnéespersos sont importantes et sont dorénavant protégées par des prolois. Il s\'agit d\'un sujet sociétal actuel.',
+            this.sentence = '<span data-src="/assets/images/gif/orwell.gif" class="link">1984 de George Orwell</span>, grand auteur de son époque, n\'est pas un choix anodin. Il remplit l\'objectif : instruire la jeunesse à la gestion de ses <span class="bold-italic"> donnéespersos </span>. Les <span class="bold-italic"> donnéespersos </span> sont importantes et sont dorénavant protégées par des <span class="bold-italic">prolois</span>. Il s\'agit d\'un sujet sociétal actuel.',
             this.src ='/assets/images/book.jpg'
           } 
           break;
@@ -376,14 +376,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
-            this.sentence = 'Une façon ludique de lire un livre dit classique. Le choix des supports était primordial, ils se sont orientés instinctivement vers un smartphone et un livre. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span data-src="/assets/images/phone.gif" class="link">d\'outil d\'exploration</span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était. '
+            this.sentence = 'Une façon ludique de lire un livre dit classique. Le choix des supports était primordial, ils se sont orientés instinctivement vers un smartphone et un livre. L\'idée est de faire vivre une expérience en facilitant son accès. L\'application Omnia va servir de guide à la lecture mais également <span data-src="/assets/images/gif/map.gif" class="link">d\'outil d\'exploration</span> de l\'univers. Avec son smartphone, l\'adolescent a toutes les clés en mains pour déchiffrer l\'histoire comme s\'il y était. '
             this.src = '/assets/images/phone.gif'
           } 
 
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> une nouvelle lecture.'
-            this.sentence = 'Une méthode de lecture approuvée par le Parti car classique. Une nouvelle expérience à portée de toutes les mains via un simple Télécranportable et un livre fourni par le Miniver. Omnia vous <span data-src="/assets/images/phone.gif" class="link">guide</span> à travers l\'univers d\'Océania.',
+            this.sentence = 'Une méthode de lecture approuvée par le Parti car classique. Une nouvelle expérience à portée de toutes les mains via un simple <span class="bold-italic">télécranportable</span> et un livre fourni par le <span class="bold-italic">Miniver</span>. Omnia vous <span data-src="/assets/images/gif/map.gif" class="link">guide</span> à travers l\'univers d\'Océania.',
             this.src ='/assets/images/phone.gif'
           } 
 
@@ -393,14 +393,14 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> un nouveau langage.'
-            this.sentence = 'Qui dit nouvel univers, dit nouveau langage. George Orwell, en écrivant 1984, a mis en place un nouveau système de communication appelé la novlangue. Il s\'agit de la langue officielle du monde d\'Oceania. Le principe est simple : plus on diminue le nombre de mots d\'une langue, plus on diminue le nombre de concepts avec lesquels les gens peuvent réfléchir, plus on réduit les finesses du langage, moins les gens sont capables de réfléchir, et plus ils raisonnent à l\'affect.  </br> Saurez-vous parler le novlangue ?'
+            this.sentence = 'Qui dit nouvel univers, dit nouveau langage. George Orwell, en écrivant 1984, a mis en place un nouveau système de communication appelé la novlangue. Il s\'agit de la langue officielle du monde d\'Oceania. Le principe est simple : plus on diminue le nombre de mots d\'une langue, plus on diminue le nombre de concepts avec lesquels les gens peuvent réfléchir, plus on réduit les finesses du langage, moins les gens sont capables de réfléchir, et plus ils raisonnent à l\'affect.  </br> Saurez-vous parler le novlangue ? <br/> Vous aussi, maîtrisez la novlangue :  <span class="bold-italic"> lective, donnéespersos, prolois, télécranportable, miniver, minilove, minipax, miniplein</span>...'
             this.src = null
           } 
 
           if (this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Le novlangue, <br/> un langage taillé <br/> jusqu’à l’os.',
-            this.sentence = 'Le novlangue est l’idiome officiel de l’Océania. Contrairement à l’ancilangue, imprécise et bourrée de nuances superflues, le novlangue permet une pensée claire et lucide, fluidifiant la communication entre camarades. Il est le seul langage dont le dictionnaire rétrécit au fil des éditions, ce qui fait la fierté absolue de Big Brother, évidemment à l’origine de l’idée.',
+            this.sentence = 'Le novlangue est l’idiome officiel de l’Océania. Contrairement à <span class="bold-italic">l’ancilangue</span>, imprécise et bourrée de nuances superflues, le novlangue permet une pensée claire et lucide, fluidifiant la communication entre camarades. Il est le seul langage dont le dictionnaire rétrécit au fil des éditions, ce qui fait la fierté absolue de Big Brother, évidemment à l’origine de l’idée. <br> Vous aussi, maîtrisez la novlangue :  <span class="bold-italic"> lective, donnéespersos, prolois, télécranportable, miniver, minilove, minipax, miniplein</span>...',
             this.src = null
           } 
 
@@ -773,4 +773,5 @@ export default {
 
   +For-phone-only()
     display none
+ 
 </style>
