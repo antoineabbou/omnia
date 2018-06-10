@@ -107,7 +107,7 @@ export default {
     lastAnimation () {
       this.lastTimeline = new TimelineLite( { 
         delay: 0.1,
-        onComplete: () => {
+        onComplete: () => {  
           setTimeout(() => {
             this.$router.push({ path: 'presentation' })  
           }, 400);

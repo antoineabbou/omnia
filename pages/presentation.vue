@@ -116,15 +116,13 @@ export default {
   mounted () {
     this.links = this.$el.querySelectorAll('.paragraph .link')
     document.body.style.margin = "0px"
-    this.engine = loop(this.loop)
-    this.engine.start()
     
     this.step = 0
 
     this.bindAll()
     this.addListeners()
     this.$nextTick(this.onResize)
-    this.startTimer(5000)
+    this.startTimer(7000)
 
 
     this.btnFooter = (this.$el.querySelector('.footer .link'))
@@ -141,6 +139,8 @@ export default {
     this.btnPrevious.addEventListener('click', this.goToPreviousStep)
 
     this.$nextTick(this.initAnimation)
+
+    
   },
 
   methods: {
@@ -332,6 +332,7 @@ export default {
 
     getContent(step) {
       Emitter.emit('GLOBAL:STEP', this.step)
+      this.$el.querySelector('.content__inner').scrollTo(0, 0)
       switch (step) {
         case 0:
 
@@ -545,7 +546,7 @@ export default {
         link.addEventListener('mouseover', this.showOverlay)
         link.addEventListener('mouseout', this.hideOverlay)
       })
-      this._startTimer = this.startTimer.bind(this, 5000);
+      this._startTimer = this.startTimer.bind(this, 7000);
       document.addEventListener("click", this._startTimer, false);
       document.addEventListener("touchstart", this._startTimer, false);
       document.addEventListener("touchend", this._startTimer, false);
