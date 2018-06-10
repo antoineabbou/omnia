@@ -116,6 +116,9 @@ export default {
   mounted () {
     this.links = this.$el.querySelectorAll('.paragraph .link')
     document.body.style.margin = "0px"
+
+    this.engine = loop(this.loop)
+    this.engine.start()
     
     this.step = 0
 
