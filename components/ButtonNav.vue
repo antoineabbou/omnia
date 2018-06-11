@@ -6,7 +6,7 @@
     </div>
     
     <div class="button-nav--cta" v-show="step===3">
-        <button v-show="step > 0" class="btn btn--previous"> Acheter le livre </button>
+        <a href="https://www.amazon.fr/1984-George-Orwell/dp/207036822X/ref=sr_1_1?ie=UTF8&qid=1528735538&sr=8-1&keywords=1984%20george%20orwell" target="_blank"><button v-show="step > 0" class="btn btn--previous"> Acheter le livre </button> </a>
         <a href="https://vimeo.com/274373843" target="_blank"> <button class="btn btn--next"> Voir la vidéo de présentation </button> </a> 
     </div>
 

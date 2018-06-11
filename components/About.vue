@@ -14,7 +14,7 @@
                 </li>
             </ul>
 
-            <p class="stagger sentence sentence--bottom"> Si notre projet vous intéresse, n’hésitez pas à nous contacter pour en discuter ! </p>
+            <p class="stagger sentence sentence--bottom"> Si notre projet vous intéresse, n’hésitez pas à nous contacter pour en discuter&nbsp;! </p>
         </div>
 
         <div class="part part--right">
