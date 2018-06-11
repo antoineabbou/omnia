@@ -7,7 +7,7 @@
     
     <div class="button-nav--cta" v-show="step===3">
         <button v-show="step > 0" class="btn btn--previous"> Acheter le livre </button>
-        <button class="btn btn--next"> <a href="https://vimeo.com/274373843" target="_blank"> Voir la vidéo de présentation </a> </button>
+        <a href="https://vimeo.com/274373843" target="_blank"> <button class="btn btn--next"> Voir la vidéo de présentation </button> </a> 
     </div>
 
 
