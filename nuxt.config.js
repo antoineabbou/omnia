@@ -8,7 +8,7 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'Omnia - Le livre qui vous lie',
+    title: 'Omnia | Ferez-vous la fierté de Big Brother ?',
     meta: [
       { charset: 'utf-8' },
       { name: 'theme-color', content: '#ffffff' },

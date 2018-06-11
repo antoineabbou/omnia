@@ -4,7 +4,7 @@
     <app-loader v-show="!loaded && !this.mobile"/>
 
     <div class="content">
-      <div class="content__inner" ref="vsSection">
+      <div class="content__inner content-container" ref="vsSection">
         <div class="text"> 
           <h1 class="title stagger"> Bienvenue sur Omnia </h1>
           <img class="logo stagger" src="../static/assets/images/logos/logo-white.gif" alt="logo"/>
@@ -44,6 +44,7 @@ export default {
   },
   data () {
     return {
+      done: false,
       loaded: false, 
       mobile: true
     }
@@ -98,7 +99,7 @@ export default {
         ease: Power3.easeOut
       }, 0.2)
       .to('.link', 1, {
-        opacity: 1, 
+        opacity: 1,
         ease: Expo.easeOut
       })
       
@@ -106,24 +107,22 @@ export default {
 
     lastAnimation () {
       this.lastTimeline = new TimelineLite( { 
-        delay: 0.1,
-        onComplete: () => {  
-          setTimeout(() => {
-            this.$router.push({ path: 'presentation' })  
-          }, 400);
+        onComplete: () => {
+          // this.$router.push({ path: 'concept' }) 
+          this.$router.push({ path: 'concept' })  
         }
       })
       this.lastTimeline.add('start')
-      this.lastTimeline.to('.text', 1.3, {
+      this.lastTimeline.to('.text', 0.7, {
         scale: 1.2, 
         opacity: 0,
         ease: Expo.easeOut
       }, 'start')
-      .to(this.$refs.vsSection, 1.3, {
+      .to('.content-container', 0.7, {
         opacity: 0, 
         ease: Expo.easeOut
       }, 'start')
-      .to('.link', 1.3, {
+      .to('.link', 0.7, {
         opacity: 0, 
         ease: Expo.easeOut
       }, 'start')
@@ -220,7 +219,8 @@ export default {
         if(this.width < 100) {
           this.width += 2
         }
-        if(this.width >= 100) {
+        if(this.width >= 100 && this.done === false) {
+          this.done = true
           this.complete = true
           this.lastAnimation()
         } 

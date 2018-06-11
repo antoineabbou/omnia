@@ -7,7 +7,7 @@
     
     <div class="button-nav--cta" v-show="step===3">
         <button v-show="step > 0" class="btn btn--previous"> Acheter le livre </button>
-        <button class="btn btn--next"> Télécharger l'application </button>
+        <button class="btn btn--next"> <a href="https://vimeo.com/274373843" target="_blank"> Voir la vidéo de présentation </a> </button>
     </div>
 
 
@@ -74,6 +74,11 @@ export default {
         
         .btn--previous
             margin-right 20px
+
+        .btn--next
+            a
+                color color_blue
+                text-decoration none
 
         .btn--previous, .btn--next
             +For-s-phone-only()

@@ -2,7 +2,8 @@
     <div class="translator">
         <input class="input" ref="input" v-model="message" :placeholder="placeholder">
         <img class="icon icon--translate" ref="icon" src="../static/assets/images/logos/icon-translate.svg" alt="icon-translate">
-        <p class="sentence"> {{ translatedMessage }} </p>
+        <p v-if="!typing" class="sentence"> {{ translatedMessage }} </p>
+        <img class="typing" v-if="typing" src="../static/assets/images/gif/typing.gif"/>
 
     </div>
 </template>
@@ -21,7 +22,8 @@ export default {
         translatedMessage: 'Français',
         currentLanguage: 'novlangue', 
         novlangueArrayOfWords: ['miniver', 'minipax', 'minilove', 'miniplein', 'lective', 'donnéespersos', 'prolois', 'télécranportable'],
-        frenchArrayOfWords: ['ministère de la vérité', 'ministère de la paix', 'ministère de l\'amour', 'ministère de la plénitude', 'lecture interactive', 'données personnelles', 'lois pour le peuple', 'téléphone portable']
+        frenchArrayOfWords: ['ministère de la vérité', 'ministère de la paix', 'ministère de l\'amour', 'ministère de l\'abondance', 'lecture interactive', 'données personnelles', 'lois pour le peuple', 'téléphone portable'],
+        typing: false
     }
   },
 
@@ -48,9 +50,18 @@ export default {
     }, 
 
     checkWords() {
+        if(this.message.length === 0) {
+            this.typing = false
+        }
+        else if(this.message.toLowerCase() !== '' && this.message.length > 0) {
+            this.typing = true
+        }
+
+        
         if(this.currentLanguage === 'novlangue') {
             for(let i = 0; i < this.novlangueArrayOfWords.length; i++) {
                 if (this.message.toLowerCase() === this.novlangueArrayOfWords[i]) {
+                    this.typing = false
                     this.translatedMessage = this.frenchArrayOfWords[i]
                 }   
             }
@@ -137,5 +148,7 @@ export default {
         &:first-letter
             text-transform capitalize
 
+    .typing
+        height 27px
 
 </style>

@@ -151,7 +151,7 @@ export default {
             // align-items center 
             // justify-content center
             height 100%
-            padding 100px
+            padding 60px
             position relative
             z-index 2
 

@@ -1,8 +1,8 @@
 <template>
-  <section class="layout layout--presentation">
+  <section class="layout layout--concept">
     <router-link to="/">
       <svg class="eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 73.15 50.62">
-        <path class="pupille" d="M39,23.18a7.92,7.92,0,1,0,7.92,7.92A7.93,7.93,0,0,0,39,23.18Z" transform="translate(-2.43 -0.69)" style="fill:#2c62ff"/>
+        <path class="pupille" ref="pupille" d="M39,23.18a7.92,7.92,0,1,0,7.92,7.92A7.93,7.93,0,0,0,39,23.18Z" transform="translate(-2.43 -0.69)" style="fill:#2c62ff"/>
         <path
           id="oeil"
           d="M74.62,19.34a2,2,0,0,0-2.75.66l-4.64,7.55A38.4,38.4,0,0,0,57.48,17.3l3-7.58a2,2,0,0,0-3.72-1.46L54,15.13a31.91,31.91,0,0,0-13.18-3.9V2.69a2,2,0,1,0-4,0v8.53a31.81,31.81,0,0,0-12.64,3.49L21.68,8.26A2,2,0,1,0,18,9.72l2.78,7A38.14,38.14,0,0,0,10.49,27.09L6.13,20a2,2,0,1,0-3.41,2.09l6,9.82h0l.43.67h0C15.82,44.35,26.88,51.31,39,51.31s23.35-7.1,30-19l.29-.43,6-9.8A2,2,0,0,0,74.62,19.34ZM39,47.31c-10.55,0-20.27-6.13-26.19-16.45,6-9.86,15.62-15.71,25.9-15.71,10.48,0,20.2,6,26.2,16.2C59,41.37,49.35,47.31,39,47.31Z"
@@ -11,8 +11,8 @@
       </svg>
     </router-link>
     <app-inactive/>
-    <div class="overlay"> 
-      <img :src="dataSrc" alt="phone"/>
+    <div @click="hideOverlay" class="overlay"> 
+      <img :src="dataSrc" alt="gif"/>
     </div>
 
     <img class="cross" src="../static/assets/images/logos/cross.svg" alt="cross"/>
@@ -165,20 +165,27 @@ export default {
       this.easing.eye.y += (eyeY - this.easing.eye.y) * 0.1
 
 
-      TweenLite.set(this.$refs.image, {
-        x : this.easing.cta.x * 0.5,
-        y : this.easing.cta.y * 0.5
-      })
+      if(this.$refs.image) {
+        TweenLite.set(this.$refs.image, {
+          x : this.easing.cta.x * 0.5,
+          y : this.easing.cta.y * 0.5
+        })
+      }
+      
 
-      TweenLite.set(this.$refs.circle, {
-        x : this.easing.cta.x * 0.8,
-        y : this.easing.cta.y * 0.8
-      })
+      if(this.$refs.circle) {
+        TweenLite.set(this.$refs.circle, {
+          x : this.easing.cta.x * 0.8,
+          y : this.easing.cta.y * 0.8
+        })
+      }
 
-      TweenLite.set('.pupille', {
-        x : this.easing.eye.x * 0.8,
-        y : this.easing.eye.y * 0.8
-      })
+      if(this.$refs.pupille) {
+        TweenLite.set('.pupille', {
+          x : this.easing.eye.x * 0.8,
+          y : this.easing.eye.y * 0.8
+        })
+      }
 
     },
 
@@ -396,7 +403,7 @@ export default {
           if (!this.novlangue) {
             this.subtitle = 'QU\'EST-CE ?'
             this.title = 'Omnia, <br/> un nouveau langage.'
-            this.sentence = 'Qui dit nouvel univers, dit nouveau langage. George Orwell, en écrivant 1984, a mis en place un nouveau système de communication appelé la novlangue. Il s\'agit de la langue officielle du monde d\'Oceania. Le principe est simple : plus on diminue le nombre de mots d\'une langue, plus on diminue le nombre de concepts avec lesquels les gens peuvent réfléchir, plus on réduit les finesses du langage, moins les gens sont capables de réfléchir, et plus ils raisonnent à l\'affect.  </br> Saurez-vous parler le novlangue ? <br/> Vous aussi, maîtrisez la novlangue :  <span class="bold-italic"> lective, donnéespersos, prolois, télécranportable, miniver, minilove, minipax, miniplein</span>...'
+            this.sentence = 'Qui dit nouvel univers, dit nouveau langage. George Orwell a créé nouveau système de communication appelé le Novlangue. Il s\'agit de la langue officielle du monde d\'Oceania. Le principe est simple : plus on diminue le nombre de mots d\'une langue, plus on diminue le nombre de concepts avec lesquels les gens peuvent réfléchir, plus on réduit les finesses du langage, moins les gens sont capables de réfléchir. </br> Vous aussi, maîtrisez le novlangue :  <span class="bold-italic"> lective, donnéespersos, prolois, télécranportable, miniver, minilove, minipax, miniplein</span>...'
             this.src = null
           } 
 
@@ -554,6 +561,8 @@ export default {
       document.addEventListener("touchstart", this._startTimer, false);
       document.addEventListener("touchend", this._startTimer, false);
       document.addEventListener("mousemove", this._startTimer, false);
+      document.addEventListener("keydown", this._startTimer, false);
+      document.addEventListener("keypress", this._startTimer, false);
       Emitter.on('GLOBAL:CHECKED', this.setLanguage)
       
     },
@@ -563,11 +572,11 @@ export default {
     }, 
 
     showOverlay (e) {
-      this.dataSrc = e.srcElement.getAttribute('data-src')
+      this.dataSrc = e.target.dataset.src
       this.$el.querySelector('.overlay').classList.add('visible')
     },
 
-    hideOverlay () {
+    hideOverlay () { 
       this.$el.querySelector('.overlay').classList.remove('visible')
     },
 
@@ -632,7 +641,7 @@ export default {
 
 <style lang="stylus" scoped>
 .layout
-  &&--presentation
+  &&--concept
     width 100vw 
     height 100vh
 
@@ -742,11 +751,9 @@ export default {
   margin-top: -80px;
   position: absolute;
   z-index: 10;
-  display flex
+  display none
   align-items center
   justify-content center
-  opacity 0
-  visibility hidden
   pointer-events none
 
   +For-wide()
@@ -754,11 +761,14 @@ export default {
     margin-top: -60px;
 
   +For-tablet-only()
+    width 100vw
+    margin-left: -30px;
+
+  +For-phone-only()
     width auto
 
   &.visible
-    opacity 1
-    visibility visible
+    display flex
 
   img
     width 30%
