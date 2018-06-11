@@ -8,7 +8,7 @@
         <div class="text"> 
           <h1 class="title stagger"> Bienvenue sur Omnia </h1>
           <img class="logo stagger" src="../static/assets/images/logos/logo-white.gif" alt="logo"/>
-          <p class="sentence stagger"> Êtes-vous prêt à rentrer dans un nouveau monde ? </p>
+          <p class="sentence stagger"> Êtes-vous prêt à entrer dans un nouveau monde ? </p>
         </div>
         <div class="press-bar"> </div>
       </div>
@@ -108,7 +108,6 @@ export default {
     lastAnimation () {
       this.lastTimeline = new TimelineLite( { 
         onComplete: () => {
-          // this.$router.push({ path: 'concept' }) 
           this.$router.push({ path: 'concept' })  
         }
       })
