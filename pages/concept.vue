@@ -10,7 +10,7 @@
           style="fill:#2c62ff"/>
       </svg>
     </router-link>
-    <!-- <app-inactive/> -->
+    <app-inactive/>
     <div @click="hideOverlay" class="overlay"> 
       <img :src="dataSrc" alt="gif"/>
     </div>
