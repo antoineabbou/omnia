@@ -79,10 +79,12 @@ export default {
 		+For-large()
 			font-size 30px
 			line-height 36px
+			margin-bottom 10px
 
 		+For-tablet-only()
 			font-size 42px
 			line-height 48px
+			margin-bottom 30px
 		
 		+For-phone-only()
 			font-size 30px
@@ -100,7 +102,7 @@ export default {
 			
 		+For-large()
 			font-size 12px
-			line-height 30px
+			line-height 24px
 		
 		+For-tablet-only()
 			font-size 16px

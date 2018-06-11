@@ -157,6 +157,9 @@ export default {
 
             +For-wide()
                 padding 50px
+
+            +For-large()
+                overflow scroll
             
             +For-tablet-only()
                 position absolute
@@ -274,8 +277,12 @@ export default {
 
                     +For-wide()
                         font-size 13px
+                    
+                    +For-large()
+                        display none
 
                     +For-tablet-only()
+                        display block
                         position static
                         margin-top 30px
                         font-size 14px
@@ -288,6 +295,9 @@ export default {
                 margin-left 150px
                 display flex
                 align-items flex-end
+
+                +For-large() 
+                    margin-left 50px
 
                 +For-tablet-only()
                     display block

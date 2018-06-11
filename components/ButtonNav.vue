@@ -61,7 +61,7 @@ export default {
             
         
         +For-large()
-            bottom 50px 
+            bottom 0px 
     
         
         +For-tablet-only()

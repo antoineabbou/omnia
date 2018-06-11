@@ -429,7 +429,7 @@ export default {
         }
       })
 
-      if(window.innerWidth > 768 ) {
+      if(window.innerWidth > 868 ) {
         this.showAboutTimeline.add('start')
         .to(this.$el.querySelector('.novlangue-toggle'), 0.75, {
           opacity: 0,
@@ -500,7 +500,7 @@ export default {
           this.$el.querySelector('.about').style.display = 'none'
         }
       })
-      if(window.innerWidth > 768 ) {
+      if(window.innerWidth > 868 ) {
         this.hideAboutTimeline.add('start')
 
         .to('.cross', 0.75, {opacity: 0, ease: Expo.easeOut }, 'start')
