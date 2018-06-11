@@ -57,7 +57,7 @@ export default {
             this.typing = true
         }
 
-        
+
         if(this.currentLanguage === 'novlangue') {
             for(let i = 0; i < this.novlangueArrayOfWords.length; i++) {
                 if (this.message.toLowerCase() === this.novlangueArrayOfWords[i]) {
@@ -149,6 +149,6 @@ export default {
             text-transform capitalize
 
     .typing
-        height 27px
+        height 25px
 
 </style>
