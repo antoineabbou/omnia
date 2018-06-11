@@ -10,7 +10,7 @@
           style="fill:#2c62ff"/>
       </svg>
     </router-link>
-    <app-inactive/>
+    <!-- <app-inactive/> -->
     <div @click="hideOverlay" class="overlay"> 
       <img :src="dataSrc" alt="gif"/>
     </div>
@@ -762,10 +762,10 @@ export default {
 
   +For-tablet-only()
     width 100vw
-    margin-left: -30px;
 
   +For-phone-only()
     width auto
+    margin-left: -30px;
 
   &.visible
     display flex
