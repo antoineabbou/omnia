@@ -1,22 +1,61 @@
-# OMNIA - Landing page
+# Omnia
+![alt text](http://antoineabbou.fr/omnia1.png)
 
-> Nuxt.js project
 
-## Build Setup
+This project is the presentation site of our end-of-year project in Gobelins on the subject Book of the future for youth.
 
-``` bash
-# install dependencies
-$ npm install # Or yarn install
+This project was built over the period of January to June 2018. We chose to head to George Orwell's 1984 book and build an application using Unity for storytelling.
 
-# serve with hot reload at localhost:3000
+This site is there to present the different points of our application.
+
+![alt text](http://antoineabbou.fr/omnia2.png)
+
+
+## Demo
+> http://veille.antoineabbou.fr
+
+## Video presentation
+> https://vimeo.com/274373843  
+
+## Installation
+
+### Requirements
+* npm
+
+Once the project is cloned, just run :
+
+`$ npm install`
+
+
+## Development
+
+Launch server dev listening to localhost:3000
+
+```
 $ npm run dev
+```
 
-# build for production and launch server
+## Build
+Create your application with a web server and minify the JS & CSS (for production).
+
+```
 $ npm run build
-$ npm start
+```
 
-# generate static project
+## Start
+Start the server in production mode (after running nuxt build).
+
+```
+$ npm run start
+```
+
+## Generate
+
+Create the application and generate all routes as HTML files (used for static hosting).
+
+```
 $ npm run generate
 ```
 
-For detailed explanation on how things work, checkout the [Nuxt.js docs](https://github.com/nuxt/nuxt.js).
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
