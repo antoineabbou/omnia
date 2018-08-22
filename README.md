@@ -12,7 +12,7 @@ This site is there to present the different points of our application.
 
 
 ## Demo
-> http://veille.antoineabbou.fr
+> http://omnia1984.io
 
 ## Video presentation
 > https://vimeo.com/274373843  
